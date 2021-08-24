@@ -9,7 +9,7 @@ int main() {
     const int screenWidth = 800;
     const int screenHeight = 400;
     const char *title = "Joguinho";
-    int power =1;
+    int power =0;
     int soltaInimigo1 =0;
     int soltaInimigo2 =0;
     int book3 =0;
@@ -20,8 +20,8 @@ int main() {
     SetWindowTitle(title);
     
     Vector2 ballPosition = { (float)33, (float)356 };
-    Vector2 enemyPosition2 = { (float)400, (float)20 };
-    Vector2 enemyPosition = { (float)50, (float)290 };
+    Vector2 enemyPosition2;
+    Vector2 enemyPosition;
 
 
     //mapa
@@ -74,15 +74,16 @@ int main() {
     Rectangle areaSeguranca2 = {(float)700, (float)110, (float)90, (float)45};
     Rectangle areaSeguranca3 = {(float)300, (float)20, (float)100, (float)75};
 
-    //do lado 21 em cima 20
-    //acionar fantasma
-    //ao lado 21 e ao lado 30
-
     //books
     Rectangle actGhost1 = {(float)15, (float)280, (float)25, (float)25};
     Rectangle actGhost2 = {(float)275, (float)300, (float)25, (float)25};
     Rectangle actGhost3 = {(float)650, (float)120, (float)25, (float)25};
 
+    //mascara de gas
+    Rectangle mask = {(float)20, (float)30, (float)25, (float)25};
+
+    //saida
+    Rectangle door = {(float)780, (float)20, (float)20, (float)70};
 
 
     SetTargetFPS(60); // Set our game to run at 60 frames-per-second
@@ -121,19 +122,19 @@ int main() {
 
         //entrada
         if(ballPosition.x <= 0){
-            deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+            deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
         }
 
         if (!hacker()){
             //colisoes com o terreno
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec1)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec2)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec3)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }/*
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec4)){
                 ballPosition.x = 33;
@@ -144,10 +145,10 @@ int main() {
                 ballPosition.y= 356; 
             } */
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec6)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             } 
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec7)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
             /*if(CheckCollisionCircleRec(ballPosition, RAIO, rec8)){
                 ballPosition.x = 33;
@@ -158,84 +159,84 @@ int main() {
                 ballPosition.y= 356;
             } */
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec10)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec11)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec12)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec13)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec14)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec15)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec16)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec17)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec18)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec19)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec20)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec21)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec22)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec23)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec24)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec25)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec26)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }/*
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec27)){
                 ballPosition.x = 33;
                 ballPosition.y= 356; 
             } */
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec28)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }/*
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec29)){
                 ballPosition.x = 33;
                 ballPosition.y= 356; 
             } */
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec30)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec31)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec32)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec33)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec34)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec35)){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             } /*
                 if(CheckCollisionCircleRec(ballPosition, RAIO, rec36)){
                 ballPosition.x = 33;
@@ -265,27 +266,40 @@ int main() {
                 resetEnemy(&enemyPosition2.x,&enemyPosition2.y,600,356);
             }
 
-            //frutinha
+            //books
             if(CheckCollisionCircleRec(ballPosition, RAIO, actGhost1)) soltaInimigo1 =1;
             if(CheckCollisionCircleRec(ballPosition, RAIO, actGhost2)) soltaInimigo2 =1;
             if(CheckCollisionCircleRec(ballPosition, RAIO, actGhost3)) book3 =1;                
 
             //colisao com inimigo
             if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition, RAIO) && soltaInimigo1 == 1){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
 
             if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition2, RAIO) && soltaInimigo2 == 1){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356);
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
             
+            //mascara
+            if(CheckCollisionCircleRec(ballPosition, RAIO, mask)) power =1;
+
+
+            //saida
+            if(CheckCollisionCircleRec(ballPosition, RAIO, door) && soltaInimigo1 == 1 && soltaInimigo2 == 1 
+            && book3 == 1){
+                CloseWindow();;
+            } 
+            else if(CheckCollisionCircleRec(ballPosition, RAIO, door)){
+                ballPosition.x = 770;
+            }
+
             //veneno
-            if (!powerPoison()){
+            if (!powerPoison(power)){
                 if(CheckCollisionCircleRec(ballPosition, RAIO, veneno) 
                 || CheckCollisionCircleRec(ballPosition, RAIO, veneno2)
                 || CheckCollisionCircleRec(ballPosition, RAIO, veneno3)){
 
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,33,356); 
+                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
                 }
 
             }
@@ -341,15 +355,21 @@ int main() {
             DrawRectangleRec(areaSeguranca2, PINK);
             DrawRectangleRec(areaSeguranca3, PINK);
 
+            if(power == 0) DrawRectangleRec(mask, PURPLE);
+
+            DrawRectangleRec(door, GRAY);
+
+
 
             if(soltaInimigo1 == 0) DrawRectangleRec(actGhost1, ORANGE);
             if(soltaInimigo2 == 0) DrawRectangleRec(actGhost2, ORANGE);
             if(book3 == 0) DrawRectangleRec(actGhost3, ORANGE);
+            
 
 
             DrawText("USE AS SETAS PARA MOVER", 10, 10, 20, DARKGRAY);
 
-            if (powerPoison() && power == 1){
+            if (powerPoison(power)){
                 DrawCircleV(ballPosition, RAIO, RED);
             }
             else if(hacker()){
