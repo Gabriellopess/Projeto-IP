@@ -64,6 +64,43 @@ int main() {
     Rectangle rec35 = {(float)0, (float)0, (float)8, (float)320};
     Rectangle rec36 = {(float)618, (float)165, (float)20, (float)180};
 
+    //A partir daqui os diagonais....
+    Rectangle dia1 = {(float)116, (float)258, (float)12, (float)12};
+    Rectangle dia2 = {(float)108, (float)265, (float)13, (float)13};
+    Rectangle dia3 = {(float)95, (float)278, (float)13, (float)13};
+    Rectangle dia4 = {(float)72, (float)221, (float)13, (float)13};
+    Rectangle dia5 = {(float)59, (float)234, (float)13, (float)13};
+    Rectangle dia6 = {(float)5, (float)141, (float)13, (float)13};
+    Rectangle dia7 = {(float)18, (float)154, (float)13, (float)13};
+    Rectangle dia8 = {(float)31, (float)163, (float)13, (float)13};
+    Rectangle dia9 = {(float)44, (float)175, (float)13, (float)13};
+    Rectangle dia10 = {(float)57, (float)185, (float)13, (float)13};
+    Rectangle dia11 = {(float)70, (float)194, (float)13, (float)13};
+    Rectangle dia12 = {(float)70, (float)112, (float)13, (float)13};
+    Rectangle dia13 = {(float)83, (float)124, (float)13, (float)13};
+    Rectangle dia14 = {(float)96, (float)135, (float)13, (float)13};
+    Rectangle dia15 = {(float)106, (float)143, (float)13, (float)13};
+    Rectangle dia16 = {(float)522, (float)232, (float)13, (float)13};
+    Rectangle dia17 = {(float)509, (float)245, (float)13, (float)13};
+    Rectangle dia18 = {(float)496, (float)258, (float)13, (float)13};
+    Rectangle dia19 = {(float)483, (float)271, (float)13, (float)13};
+    Rectangle dia20 = {(float)552, (float)303, (float)13, (float)13};
+    Rectangle dia21 = {(float)539, (float)316, (float)13, (float)13};
+    Rectangle dia22 = {(float)526, (float)329, (float)13, (float)13};
+    Rectangle dia23 = {(float)513, (float)342, (float)13, (float)13};
+    Rectangle dia24 = {(float)500, (float)355, (float)13, (float)13};
+    Rectangle dia25 = {(float)487, (float)368, (float)13, (float)13};
+    Rectangle dia26 = {(float)634, (float)170, (float)13, (float)13};
+    Rectangle dia27 = {(float)647, (float)183, (float)13, (float)13};
+    Rectangle dia28 = {(float)658, (float)197, (float)13, (float)13};
+    Rectangle dia29 = {(float)669, (float)210, (float)13, (float)13};
+    Rectangle dia30 = {(float)680, (float)223, (float)13, (float)13};
+    Rectangle dia31 = {(float)691, (float)236, (float)13, (float)13};
+    Rectangle dia32 = {(float)703, (float)249, (float)13, (float)13};
+    Rectangle dia33 = {(float)713, (float)262, (float)13, (float)13};
+    Rectangle dia34 = {(float)721, (float)271, (float)13, (float)13};
+    Rectangle dia35 = {(float)730, (float)281, (float)12, (float)12};
+
     //venenos
     Rectangle veneno = {(float)410, (float)335, (float)20, (float)46};
     Rectangle veneno2 = {(float)52, (float)20, (float)22, (float)51};
@@ -135,29 +172,13 @@ int main() {
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec3)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-            }/*
-            if(CheckCollisionCircleRec(ballPosition, RAIO, rec4)){
-                ballPosition.x = 33;
-                ballPosition.y= 356; 
-            } 
-            if(CheckCollisionCircleRec(ballPosition, RAIO, rec5)){
-                ballPosition.x = 33;
-                ballPosition.y= 356; 
-            } */
+            }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec6)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             } 
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec7)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
-            /*if(CheckCollisionCircleRec(ballPosition, RAIO, rec8)){
-                ballPosition.x = 33;
-                ballPosition.y= 356; 
-            } */
-            /*if(CheckCollisionCircleRec(ballPosition, RAIO, rec9)){
-                ballPosition.x = 33;
-                ballPosition.y= 356;
-            } */
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec10)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
@@ -208,18 +229,12 @@ int main() {
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec26)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-            }/*
-            if(CheckCollisionCircleRec(ballPosition, RAIO, rec27)){
-                ballPosition.x = 33;
-                ballPosition.y= 356; 
-            } */
+            }
+        
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec28)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-            }/*
-            if(CheckCollisionCircleRec(ballPosition, RAIO, rec29)){
-                ballPosition.x = 33;
-                ballPosition.y= 356; 
-            } */
+            }
+            
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec30)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
             }
@@ -237,12 +252,115 @@ int main() {
             }
             if(CheckCollisionCircleRec(ballPosition, RAIO, rec35)){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-            } /*
-                if(CheckCollisionCircleRec(ballPosition, RAIO, rec36)){
-                ballPosition.x = 33;
-                ballPosition.y= 356; 
-            } */
-            
+            } 
+
+
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia1)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia2)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia3)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia4)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia5)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia6)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia7)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia8)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia9)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia10)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia11)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia12)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia13)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia14)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia15)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia16)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia17)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia18)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia19)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia20)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia21)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia22)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia23)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia24)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia25)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia26)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia27)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia28)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia29)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia30)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia31)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia32)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia33)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia34)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+            if(CheckCollisionCircleRec(ballPosition, RAIO, dia35)){
+                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
+            }
+
             //area de segurança
 
             if(CheckCollisionCircleRec(enemyPosition, RAIO, areaSeguranca)){
@@ -347,6 +465,42 @@ int main() {
             DrawRectangleRec(rec35, RED);
             DrawRectanglePro(rec36, bullshit, -40, RED);
 
+            DrawRectangleRec(dia1, BLACK);
+            DrawRectangleRec(dia2, BLACK);
+            DrawRectangleRec(dia3, BLACK);
+            DrawRectangleRec(dia4, BLACK);
+            DrawRectangleRec(dia5, BLACK);
+            DrawRectangleRec(dia6, BLACK);
+            DrawRectangleRec(dia7, BLACK);
+            DrawRectangleRec(dia8, BLACK);
+            DrawRectangleRec(dia9, BLACK);
+            DrawRectangleRec(dia10, BLACK);
+            DrawRectangleRec(dia11, BLACK);
+            DrawRectangleRec(dia12, BLACK);
+            DrawRectangleRec(dia13, BLACK);
+            DrawRectangleRec(dia14, BLACK);
+            DrawRectangleRec(dia15, BLACK);
+            DrawRectangleRec(dia16, BLACK);
+            DrawRectangleRec(dia17, BLACK);
+            DrawRectangleRec(dia18, BLACK);
+            DrawRectangleRec(dia19, BLACK);
+            DrawRectangleRec(dia20, BLACK);
+            DrawRectangleRec(dia21, BLACK);
+            DrawRectangleRec(dia22, BLACK);
+            DrawRectangleRec(dia23, BLACK);
+            DrawRectangleRec(dia24, BLACK);
+            DrawRectangleRec(dia25, BLACK);
+            DrawRectangleRec(dia26, BLACK);
+            DrawRectangleRec(dia27, BLACK);
+            DrawRectangleRec(dia28, BLACK);
+            DrawRectangleRec(dia29, BLACK);
+            DrawRectangleRec(dia30, BLACK);
+            DrawRectangleRec(dia31, BLACK);
+            DrawRectangleRec(dia32, BLACK);
+            DrawRectangleRec(dia33, BLACK);
+            DrawRectangleRec(dia34, BLACK);
+            DrawRectangleRec(dia35, BLACK);
+
             DrawRectangleRec(veneno, GREEN);
             DrawRectangleRec(veneno2, GREEN);
             DrawRectangleRec(veneno3, GREEN);
@@ -382,7 +536,7 @@ int main() {
             if(soltaInimigo1 == 1) DrawCircleV(enemyPosition, RAIO, DARKBLUE);
             if(soltaInimigo2 == 1) DrawCircleV(enemyPosition2, RAIO, DARKBLUE);
 
-
+            
         EndDrawing();
     } 
     CloseWindow();  // Close window and OpenGL context
