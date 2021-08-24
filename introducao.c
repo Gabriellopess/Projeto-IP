@@ -1,32 +1,31 @@
 #include "raylib.h"
+#include "introducao.h"
 
-int main(void) {
-    const int screenWidth = 800;
-    const int screenHeight = 400;
+void introducao(Texture2D castle, Rectangle *castleFrameRec, Vector2 castlePosition, char *message, int framesCounter) {            
+    DrawTextureRec(
+        castle,
+        *castleFrameRec,
+        castlePosition,
+        WHITE
+    );
+    DrawText(TextSubtext(message, 0, framesCounter/10), 420, 50, 20, MAROON);
+    DrawText("PRESSIONE [ESPAÇO] PARA ADIANTAR!", 392, 265, 20, LIGHTGRAY);
+    DrawText("PRESSIONE [PLAY] PARA JOGAR!", 390, 290, 20, LIGHTGRAY);
+}
 
-    InitWindow(screenWidth, screenHeight, "raylib [text] example - text writing anim");
+void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFramesSpeed, int *castleCurrentFrame, Rectangle *castleFrameRec, int *framesCounter){
+    (*castleFramesCounter)++;
+    if(*castleFramesCounter >= (20/castleFramesSpeed)){
+        *castleFramesCounter = 0;
+        (*castleCurrentFrame)++;
+        if(*castleCurrentFrame > 1){
+            *castleCurrentFrame = 0;
+        }
 
-    const char message[100] = "Teste lalalala historinha bla bla bla\nbla bla bla bla";
-
-    int framesCounter = 0;
-
-    SetTargetFPS(60); 
-    
-    while (!WindowShouldClose()) {
-        if (IsKeyDown(KEY_SPACE)) framesCounter += 8;
-        else framesCounter++;
+        (*castleFrameRec).x = (float)*castleCurrentFrame * (float)castle.width/2;
         
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
-            DrawText(TextSubtext(message, 0, framesCounter/10), 400, 50, 20, MAROON);
-            DrawText("PRESSIONE [ESPAÇO] PARA ADIANTAR!", 239, 300, 20, LIGHTGRAY);
-            DrawText("PRESSIONE [PLAY] PARA JOGAR!", 239, 340, 20, LIGHTGRAY);
-            
-
-        EndDrawing();
     }
 
-    CloseWindow(); 
-
-    return 0;
+    if (IsKeyDown(KEY_SPACE)) (*framesCounter) += 8;
+    else (*framesCounter)++;
 }
