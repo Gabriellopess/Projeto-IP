@@ -36,33 +36,9 @@ int main() {
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 3.0f;
-        if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 3.0f;
-        if (IsKeyDown(KEY_UP)) ballPosition.y -= 3.0f;
-        if (IsKeyDown(KEY_DOWN)) ballPosition.y += 3.0f;
-        
-        if(soltaInimigo1 == 0){
-            resetEnemy(&enemyPosition.x,&enemyPosition.y,450,80);
-        }
-
-        if(soltaInimigo2 == 0){
-            resetEnemy(&enemyPosition2.x,&enemyPosition2.y,600,356);
-        }
-
-
-        if(soltaInimigo1 == 1){
-            if(ballPosition.x > enemyPosition.x) enemyPosition.x += 0.75f;
-            if(ballPosition.x < enemyPosition.x) enemyPosition.x -= 0.75f;
-            if(ballPosition.y > enemyPosition.y) enemyPosition.y += 0.75f;
-            if(ballPosition.y < enemyPosition.y) enemyPosition.y -= 0.75f;
-        }
-        
-        if(soltaInimigo2 == 1){
-            if(ballPosition.x > enemyPosition2.x) enemyPosition2.x += 0.75f;
-            if(ballPosition.x < enemyPosition2.x) enemyPosition2.x -= 0.75f;
-            if(ballPosition.y > enemyPosition2.y) enemyPosition2.y += 0.75f;
-            if(ballPosition.y < enemyPosition2.y) enemyPosition2.y -= 0.75f;
-        }
+        controlHero(&ballPosition.x,&ballPosition.y);
+        controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
+        ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
 
         //entrada
         if(ballPosition.x <= 0){
