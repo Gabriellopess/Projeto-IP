@@ -1,7 +1,14 @@
 #include "raylib.h"
 #include "introducao.h"
 
-void introducao(Texture2D castle, Rectangle *castleFrameRec, Vector2 castlePosition, char *message, int framesCounter) {            
+void introducao(Texture2D background, Texture2D castle, Rectangle *castleFrameRec, Vector2 castlePosition, char *message, int framesCounter) {  
+    
+    DrawTextureRec(
+        background,
+        (Rectangle){0.0f, 0.0f, (float)background.width, (float)background.height},
+        (Vector2){0, 0},
+        WHITE
+    );
     DrawTextureRec(
         castle,
         *castleFrameRec,
@@ -13,7 +20,7 @@ void introducao(Texture2D castle, Rectangle *castleFrameRec, Vector2 castlePosit
     DrawText("PRESSIONE [PLAY] PARA JOGAR!", 390, 290, 20, LIGHTGRAY);
 }
 
-void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFramesSpeed, int *castleCurrentFrame, Rectangle *castleFrameRec, int *framesCounter){
+void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFramesSpeed, int *castleCurrentFrame, Rectangle *castleFrameRec, int *framesCounter, int *gameStage){
     (*castleFramesCounter)++;
     if(*castleFramesCounter >= (20/castleFramesSpeed)){
         *castleFramesCounter = 0;
@@ -28,4 +35,6 @@ void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFrame
 
     if (IsKeyDown(KEY_SPACE)) (*framesCounter) += 8;
     else (*framesCounter)++;
+
+    if(IsKeyDown(KEY_ENTER)) *gameStage = 1;
 }
