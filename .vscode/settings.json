@@ -2,6 +2,7 @@
     "files.associations": {
         "hero.h": "c",
         "stdio.h": "c",
-        "enemy.h": "c"
+        "enemy.h": "c",
+        "introducao.h": "c"
     }
 }

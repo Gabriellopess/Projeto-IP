@@ -19,3 +19,10 @@ int powerPoison(int power){
     if(IsKeyDown(KEY_SPACE) && power == 1) return 1;
     else return 0;
 }
+
+void controlHero(float * ballPositionx,float * ballPositiony){
+    if (IsKeyDown(KEY_RIGHT)) (*ballPositionx) += 3.0f;
+        if (IsKeyDown(KEY_LEFT)) (*ballPositionx) -= 3.0f;
+        if (IsKeyDown(KEY_UP)) (*ballPositiony) -= 3.0f;
+        if (IsKeyDown(KEY_DOWN)) (*ballPositiony) += 3.0f;
+}

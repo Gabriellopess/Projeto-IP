@@ -5,6 +5,7 @@
 #include "hero.h"
 #include "map.h"
 #include "introducao.h"
+#include "texturas.h"
 
 #define RAIO 7
 
@@ -16,9 +17,11 @@ int main() {
     const char *title = "Joguinho";
     InitWindow(screenWidth, screenHeight, "raylib");
     SetWindowTitle(title);
-    SetTargetFPS(60); 
+    SetTargetFPS(60);
 
     int gameStage = 0;
+    float temporary = 0;
+    float temporary2 = 0;
 
     int power =0;
     int soltaInimigo1 =0;
@@ -31,9 +34,18 @@ int main() {
     //mapa
     Rectangle *mapa = NULL;
     Vector2 bullshit = {(float)0, (float)0};
-    mapa = map();
     Texture2D mapGrass = LoadTexture("assets/GrassSprite.png");
     Texture2D stoneHorizWall = LoadTexture("assets/StoneWallSprite80x22.png");
+    Texture2D book1text = LoadTexture("assets/book1Sprite40x40.png");
+    Texture2D book2text = LoadTexture("assets/book2Sprite40x40.png");
+    Texture2D book3text = LoadTexture("assets/book3Sprite40x40.png");
+    Texture2D fantasmaRight = LoadTexture("assets/fantasmaSprite50x50.png");
+    Texture2D fantasmaLeft = LoadTexture("assets/fantasmaLeftSprite50x50.png");
+    Texture2D mask = LoadTexture("assets/mask2Sprite.png");
+    Texture2D veneno = LoadTexture("assets/venenoSprite.png");
+    Rectangle stoneWallRec = {0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height};
+
+    mapa = map();
     
     //castelo introdução
     int castleCurrentFrame = 0;
@@ -62,33 +74,9 @@ int main() {
         }
 
         if(gameStage == 1){
-            if (IsKeyDown(KEY_RIGHT)) ballPosition.x += 3.0f;
-            if (IsKeyDown(KEY_LEFT)) ballPosition.x -= 3.0f;
-            if (IsKeyDown(KEY_UP)) ballPosition.y -= 3.0f;
-            if (IsKeyDown(KEY_DOWN)) ballPosition.y += 3.0f;
-            
-            if(soltaInimigo1 == 0){
-                resetEnemy(&enemyPosition.x,&enemyPosition.y,450,80);
-            }
-
-            if(soltaInimigo2 == 0){
-                resetEnemy(&enemyPosition2.x,&enemyPosition2.y,600,356);
-            }
-
-
-            if(soltaInimigo1 == 1){
-                if(ballPosition.x > enemyPosition.x) enemyPosition.x += 0.25f;
-                if(ballPosition.x < enemyPosition.x) enemyPosition.x -= 0.25f;
-                if(ballPosition.y > enemyPosition.y) enemyPosition.y += 0.25f;
-                if(ballPosition.y < enemyPosition.y) enemyPosition.y -= 0.25f;
-            }
-            
-            if(soltaInimigo2 == 1){
-                if(ballPosition.x > enemyPosition2.x) enemyPosition2.x += 0.25f;
-                if(ballPosition.x < enemyPosition2.x) enemyPosition2.x -= 0.25f;
-                if(ballPosition.y > enemyPosition2.y) enemyPosition2.y += 0.25f;
-                if(ballPosition.y < enemyPosition2.y) enemyPosition2.y -= 0.25f;
-            }
+            controlHero(&ballPosition.x,&ballPosition.y);
+            controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
+            ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
 
             //entrada
             if(ballPosition.x <= 0){
@@ -96,267 +84,22 @@ int main() {
             }
 
             if (!hacker()){
-                //colisoes com o terreno
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[0])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[1])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[2])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[5])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-                } 
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[6])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[9])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[10])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO,mapa[11])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[12])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[13])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[14])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[15])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[16])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[17])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[18])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[19])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[20])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[21])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[22])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[23])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[24])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[25])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-            
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[27])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
+                //colisoes com o terreno (hero)
+                collisionHero(ballPosition,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power);               
+                //colisoes com o terreno (enemy)
+                collisionEnemy(enemyPosition,enemyPosition2,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
                 
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[29])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[30])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[31])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[32])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[33])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[34])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                } 
-
-
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[36])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[37])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[38])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[39])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[40])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[41])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[42])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[43])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[44])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[45])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[46])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[47])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[48])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[49])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[50])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[51])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[52])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[53])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[54])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[55])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[56])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[57])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[58])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[59])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[60])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[61])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[62])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[63])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[64])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[65])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[66])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[67])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[68])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[69])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[70])){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                }
-
-                //area de segurança
-
-                if(CheckCollisionCircleRec(enemyPosition, RAIO, mapa[74])){
-                    resetEnemy(&enemyPosition.x,&enemyPosition.y,450,80);
-                }
-                if(CheckCollisionCircleRec(enemyPosition2, RAIO, mapa[74])){
-                    resetEnemy(&enemyPosition2.x,&enemyPosition2.y,600,356);
-                }
-
-                if(CheckCollisionCircleRec(enemyPosition, RAIO, mapa[75])){
-                    resetEnemy(&enemyPosition.x,&enemyPosition.y,450,80);
-                }
-                if(CheckCollisionCircleRec(enemyPosition2, RAIO, mapa[75])){
-                    resetEnemy(&enemyPosition2.x,&enemyPosition2.y,600,356);
-                }
-
-                if(CheckCollisionCircleRec(enemyPosition, RAIO, mapa[76])){
-                    resetEnemy(&enemyPosition.x,&enemyPosition.y,450,80);
-                }
-                if(CheckCollisionCircleRec(enemyPosition2, RAIO, mapa[76])){
-                    resetEnemy(&enemyPosition2.x,&enemyPosition2.y,600,356);
-                }
-
-                //books
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[77])) soltaInimigo1 =1;
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[78])) soltaInimigo2 =1;
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[79])) book3 =1;                
-
                 //colisao com inimigo
                 if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition, RAIO) && soltaInimigo1 == 1){
                     deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
                 }
-
                 if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition2, RAIO) && soltaInimigo2 == 1){
                     deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
                 }
-                
-                //mascara
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[80])) power =1;
-
-
-                //saida
-                if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[81]) && soltaInimigo1 == 1 && soltaInimigo2 == 1 
-                && book3 == 1){
-                    CloseWindow();;
-                } 
-                else if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[81])){
-                    ballPosition.x = 770;
-                }
-
-                //veneno
-                if (!powerPoison(power)){
-                    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[71]) 
-                    || CheckCollisionCircleRec(ballPosition, RAIO, mapa[72])
-                    || CheckCollisionCircleRec(ballPosition, RAIO, mapa[73])){
-
-                        deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356); 
-                    }
-
-                }
-                
             }
+   
         }
+        
         
         BeginDrawing();
             ClearBackground(RAYWHITE);
@@ -365,6 +108,8 @@ int main() {
                 introducao(background, castle, &castleFrameRec, castlePosition, message, framesCounter);
             }
             if(gameStage == 1){
+                //labirinto
+
                 //grama textura
                 //coluna 1
                 DrawTextureRec(
@@ -495,7 +240,7 @@ int main() {
                     (Vector2){464, 345},
                     WHITE
                 );
-                
+
                 //coluna 6
                 DrawTextureRec(
                     mapGrass,
@@ -548,7 +293,6 @@ int main() {
                     WHITE
                 );
 
-                
 
 
                 DrawRectangleRec(mapa[0], RED);
@@ -624,22 +368,79 @@ int main() {
                 DrawRectangleRec(mapa[69], BLACK);
                 DrawRectangleRec(mapa[70], BLACK);
 
+                //veneno
                 DrawRectangleRec(mapa[71], GREEN);
+                DrawTextureRec(
+                    veneno,
+                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
+                    (Vector2){(float)410, (float)335},
+                    WHITE
+                );
                 DrawRectangleRec(mapa[72], GREEN);
+                DrawTextureRec(
+                    veneno,
+                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
+                    (Vector2){(float)52, (float)20},
+                    WHITE
+                );
                 DrawRectangleRec(mapa[73], GREEN);
+                DrawTextureRec(
+                    veneno,
+                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
+                    (Vector2){(float)618, (float)20},
+                    WHITE
+                );
 
+                //safe zone
                 DrawRectangleRec(mapa[74], PINK);
                 DrawRectangleRec(mapa[75], PINK);
                 DrawRectangleRec(mapa[76], PINK);
 
-
-                if(power == 0) DrawRectangleRec(mapa[80], PURPLE);
-
+                //mask
+                if(power == 0) {
+                    DrawRectangleRec(mapa[80], PURPLE);
+                    DrawTextureRec(
+                        mask,
+                        (Rectangle){0.0f, 0.0f, (float)mask.width, (float)mask.height},
+                        (Vector2){(float)17, (float)25},
+                        WHITE
+                    );
+                }
+                
+                //porta de saida
                 DrawRectangleRec(mapa[81], GRAY);
 
-                if(soltaInimigo1 == 0) DrawRectangleRec(mapa[77], ORANGE);
-                if(soltaInimigo2 == 0) DrawRectangleRec(mapa[78], ORANGE);
-                if(book3 == 0) DrawRectangleRec(mapa[79], ORANGE);
+                //books
+                if(soltaInimigo1 == 0) {
+                    // DrawRectangleRec(mapa[77], ORANGE);
+                    DrawTextureRec(
+                        book1text,
+                        (Rectangle){0.0f, 0.0f, (float)book1text.width, (float)book1text.height},
+                        (Vector2){(float)13, (float)270},
+                        WHITE
+                    );
+                }
+                if(soltaInimigo2 == 0){
+                    // DrawRectangleRec(mapa[78], ORANGE);
+                    DrawTextureRec(
+                        book2text,
+                        (Rectangle){0.0f, 0.0f, (float)book2text.width, (float)book2text.height},
+                        (Vector2){(float)273, (float)290},
+                        WHITE
+                    );
+                } 
+                if(book3 == 0) {
+                    // DrawRectangleRec(mapa[79], ORANGE);
+                    DrawTextureRec(
+                        book3text,
+                        (Rectangle){0.0f, 0.0f, (float)book3text.width, (float)book3text.height},
+                        (Vector2){(float)648, (float)110},
+                        WHITE
+                    );
+                }
+                // if(soltaInimigo1 == 0) DrawTextureRec(book1, mapa[77], (Vector2){(float)15, (float)280}, WHITE);
+                // if(soltaInimigo2 == 0) DrawTextureRec(mapa[78], ORANGE);
+                // if(book3 == 0) DrawTextureRec(mapa[79], ORANGE);
                 
                 if (powerPoison(power)){
                     DrawCircleV(ballPosition, RAIO, RED);
@@ -651,8 +452,48 @@ int main() {
                     DrawCircleV(ballPosition, RAIO, BLACK);
                 }
                 
-                if(soltaInimigo1 == 1) DrawCircleV(enemyPosition, RAIO, DARKBLUE);
-                if(soltaInimigo2 == 1) DrawCircleV(enemyPosition2, RAIO, DARKBLUE);
+                if(soltaInimigo1 == 1){
+                    DrawCircleV(enemyPosition, RAIO, DARKBLUE);
+                    if(enemyPosition.x >= temporary){
+                        DrawTextureRec(
+                            fantasmaRight,
+                            (Rectangle){0.0f, 0.0f, (float)fantasmaRight.width, (float)fantasmaRight.height},
+                            (Vector2){enemyPosition.x - 25, enemyPosition.y - 22},
+                            WHITE
+                        );
+                    }
+                    else if(enemyPosition.x < temporary){
+                        DrawTextureRec(
+                            fantasmaLeft,
+                            (Rectangle){0.0f, 0.0f, (float)fantasmaLeft.width, (float)fantasmaLeft.height},
+                            (Vector2){enemyPosition.x - 25, enemyPosition.y - 22},
+                            WHITE
+                        );
+                    }
+                    temporary = enemyPosition.x;
+                } 
+                if(soltaInimigo2 == 1) {
+                    DrawCircleV(enemyPosition2, RAIO, DARKBLUE);
+                    if(enemyPosition2.x >= temporary2){
+                        DrawTextureRec(
+                            fantasmaRight,
+                            (Rectangle){0.0f, 0.0f, (float)fantasmaRight.width, (float)fantasmaRight.height},
+                            (Vector2){enemyPosition2.x - 25, enemyPosition2.y - 22},
+                            WHITE
+                        );
+                    }
+                    else if(enemyPosition2.x < temporary2){
+                        DrawTextureRec(
+                            fantasmaLeft,
+                            (Rectangle){0.0f, 0.0f, (float)fantasmaLeft.width, (float)fantasmaLeft.height},
+                            (Vector2){enemyPosition2.x - 25, enemyPosition2.y - 22},
+                            WHITE
+                        );
+                    }
+                    temporary2 = enemyPosition2.x;
+                }
+
+                
 
                 //Stone Wall
                 DrawTextureRec(
@@ -715,6 +556,192 @@ int main() {
                     (Vector2){720, 380},
                     WHITE
                 );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){0, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){80, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){160, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){240, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){320, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){400, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){480, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){560, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){640, 0},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){720, 0},
+                    WHITE
+                );
+
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){0, 315},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){80, 315},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){127, 315},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){0, 203},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){20, 203},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){250, 269},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){330, 269},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){350, 269},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){250, 94},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){330, 94},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){390, 94},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){384, 152},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width/1.7, (float)stoneHorizWall.height},
+                    (Vector2){484, 213}, //IMAGEM MT GRANDE PARA O RETANGULO 484
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){565, 289},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){618, 89},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){698, 89},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){726, 89},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){186, 203},
+                    WHITE
+                );
+                DrawTextureRec(
+                    stoneHorizWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
+                    (Vector2){190, 203},
+                    WHITE
+                );
+
                 
             }
         EndDrawing();
