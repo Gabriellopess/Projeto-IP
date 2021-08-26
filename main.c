@@ -1,11 +1,12 @@
+/*
 #include "raylib.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include "enemy.h"
 #include "hero.h"
 #include "map.h"
-
 #define RAIO 7
+
 //mingw32-make PLATFORM=PLATFORM_DESKTOP
 
 int main() {
@@ -37,13 +38,10 @@ int main() {
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         controlHero(&ballPosition.x,&ballPosition.y);
-        controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
-        ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
+        
 
         //entrada
-        if(ballPosition.x <= 0){
-            deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
-        }
+        
 
         if (!hacker()){
             //colisoes com o terreno (hero)
@@ -59,7 +57,8 @@ int main() {
             if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition2, RAIO) && soltaInimigo2 == 1){
                 deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
-            
+            controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
+            ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
         }
 
         BeginDrawing();
@@ -179,3 +178,4 @@ int main() {
     free(mapa);
     return 0;
 }
+*/
