@@ -3,6 +3,8 @@
         "hero.h": "c",
         "stdio.h": "c",
         "enemy.h": "c",
-        "introducao.h": "c"
+        "introducao.h": "c",
+        "texturas.h": "c",
+        "system_error": "c"
     }
 }

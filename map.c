@@ -206,211 +206,226 @@ Rectangle *map(){
 
 
 
-void collisionHero(Vector2 ballPosition,float *ballPositionx,float *ballPositiony,int *soltaInimigo1,int *soltaInimigo2,int * book3,int *power){
+void collisionHero(int *books, Vector2 ballPosition,float *ballPositionx,float *ballPositiony,int *soltaInimigo1,int *soltaInimigo2,int * book3,int *power){
     Rectangle *mapa = NULL;
     mapa = map();
     //colisoes com o terreno
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[0])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[1])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[2])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[5])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     } 
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[6])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[9])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[10])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO,mapa[11])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[12])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[13])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[14])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[15])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[16])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[17])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[18])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[19])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[20])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[21])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[22])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[23])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[24])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[25])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
 
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[27])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[29])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[30])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[31])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[32])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[33])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[34])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     } 
 
     //diagonais
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[36])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[37])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[38])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[39])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[40])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[41])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[42])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[43])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[44])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[45])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[46])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[47])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[48])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[49])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[50])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[51])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[52])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[53])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[54])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[55])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[56])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[57])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[58])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[59])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[60])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[61])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[62])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[63])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[64])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[65])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[66])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[67])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[68])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[69])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[70])){
-        deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+        deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
 
     //books
-    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[77])) (*soltaInimigo1) =1;
-    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[78])) (*soltaInimigo2) =1;
-    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[79])) (*book3) =1;
+    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[77])){
+        if((*soltaInimigo1) == 0){
+            (*books)++;
+        }
+        (*soltaInimigo1) =1;
+    } 
+    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[78])) {
+        if((*soltaInimigo2) == 0){
+            (*books)++;
+        }
+        (*soltaInimigo2) =1;
+    }
+    if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[79])) {
+        if((*book3) == 0){
+            (*books)++;
+        }
+        (*book3) = 1;
+    }
 
 
     //mascara
@@ -422,7 +437,7 @@ void collisionHero(Vector2 ballPosition,float *ballPositionx,float *ballPosition
         || CheckCollisionCircleRec(ballPosition, RAIO, mapa[72])
         || CheckCollisionCircleRec(ballPosition, RAIO, mapa[73])){
 
-            deathHero(ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
+            deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
         }
 
     }

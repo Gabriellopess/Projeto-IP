@@ -6,6 +6,7 @@
 #include "map.h"
 #include "introducao.h"
 #include "texturas.h"
+#include "texto.h"
 
 #define RAIO 7
 
@@ -27,6 +28,7 @@ int main() {
     int soltaInimigo1 =0;
     int soltaInimigo2 =0;
     int book3 =0;
+    int books = 0;
     Vector2 ballPosition = { (float)33, (float)356 };
     Vector2 enemyPosition2;
     Vector2 enemyPosition;
@@ -43,6 +45,9 @@ int main() {
     Texture2D fantasmaLeft = LoadTexture("assets/fantasmaLeftSprite50x50.png");
     Texture2D mask = LoadTexture("assets/mask2Sprite.png");
     Texture2D veneno = LoadTexture("assets/venenoSprite.png");
+    Texture2D cage3 = LoadTexture("assets/cage3.png");
+    Texture2D cage2 = LoadTexture("assets/cage2.png");
+    Texture2D cage1 = LoadTexture("assets/cage1.png");
     Rectangle stoneWallRec = {0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height};
 
     mapa = map();
@@ -51,19 +56,28 @@ int main() {
     int castleCurrentFrame = 0;
     int castleFramesCounter = 0;
     int castleFramesSpeed = 1;
-    float castleX = -40;
-    float castleY = -20; //49.52
+    float castleX = -55;
+    float castleY = -30; //49.52
     Vector2 castlePosition = {castleX, castleY};
     Texture2D castle = LoadTexture("assets/castleSpriteRed.png");
     Rectangle castleFrameRec = {0.0f, 0.0f, (float)castle.width/2, (float)castle.height};
+    
+    //buttons introducao
+    Texture2D playButton = LoadTexture("assets/playButton150x50.png");
+    Texture2D whitePlayButton = LoadTexture("assets/whitePlayButton.png");
+    Texture2D controlsButton = LoadTexture("assets/controlsButton150x50.png");
+    Texture2D whiteControlsButton = LoadTexture("assets/whiteControlsButton.png");
+    Texture2D exitButton = LoadTexture("assets/exitButton150x50.png");
+    Texture2D whiteExitButton = LoadTexture("assets/whiteExitButton.png");
 
     //background introducao
     Texture2D background = LoadTexture("assets/grassFundo.png");
 
     //texto introducao
-    char message[100] = "Teste lalalala historinha bla bla bla\nbla bla bla bla";
+    char message[100] = "Anjolinda\n    Rescue";
     int framesCounter = 0;
-
+    //texto explicação
+    char secondMessage[1000] = "Bem vindo ao Reino do CIn, discípulo!\nSua primeira missão como aprendiz de Matemática Discreta\nserá recuperar os 3 livros dos autores favoritos da\nPrincesa Anjolinda: Rosen, Lovász e Knuth, que estão\nperdidos no labirinto do castelo, protegidos por\nfantasmas e paredes amaldiçoadas.\nBoa sorte! Que Fermat o proteja.";
 
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
@@ -72,228 +86,49 @@ int main() {
             //Introducao
             introducaoLogic(castle, &castleFramesCounter, castleFramesSpeed, &castleCurrentFrame, &castleFrameRec, &framesCounter, &gameStage);
         }
-
         if(gameStage == 1){
+            textLogic(&framesCounter, &gameStage);
+        }
+        if(gameStage == 2){
             controlHero(&ballPosition.x,&ballPosition.y);
             controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
             ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
 
             //entrada
             if(ballPosition.x <= 0){
-                deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
+                deathHero(&books,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
             }
 
             if (!hacker()){
                 //colisoes com o terreno (hero)
-                collisionHero(ballPosition,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power);               
+                collisionHero(&books,ballPosition,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power);               
                 //colisoes com o terreno (enemy)
                 collisionEnemy(enemyPosition,enemyPosition2,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
                 
                 //colisao com inimigo
                 if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition, RAIO) && soltaInimigo1 == 1){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
+                    deathHero(&books,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
                 }
                 if(CheckCollisionCircles(ballPosition, RAIO, enemyPosition2, RAIO) && soltaInimigo2 == 1){
-                    deathHero(&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
+                    deathHero(&books,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
                 }
             }
    
         }
         
-        
         BeginDrawing();
             ClearBackground(RAYWHITE);
             if(gameStage == 0){
                 //introducao
-                introducao(background, castle, &castleFrameRec, castlePosition, message, framesCounter);
+                introducao(background, castle, playButton, whitePlayButton, controlsButton, whiteControlsButton, exitButton, whiteExitButton, &castleFrameRec, castlePosition, message, framesCounter);
             }
             if(gameStage == 1){
+                drawText(background, castle, castlePosition, castleFrameRec,secondMessage, framesCounter);
+            }
+            if(gameStage == 2){
                 //labirinto
-
                 //grama textura
-                //coluna 1
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){0, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){0, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){0, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){0, 345},
-                    WHITE
-                );
-
-                //coluna2
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){116, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){116, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){116, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){116, 345},
-                    WHITE
-                );
-
-                //coluna3
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){232, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){232, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){232, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){232, 345},
-                    WHITE
-                );
-
-                //coluna 4
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){348, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){348, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){348, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){348, 345},
-                    WHITE
-                );
-
-                //coluna 5
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){464, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){464, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){464, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){464, 345},
-                    WHITE
-                );
-
-                //coluna 6
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){580, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){580, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){580, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){580, 345},
-                    WHITE
-                );
-
-                //coluna 7
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){696, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){696, 115},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){696, 230},
-                    WHITE
-                );
-                DrawTextureRec(
-                    mapGrass,
-                    (Rectangle){0.0f, 0.0f, (float)mapGrass.width, (float)mapGrass.height},
-                    (Vector2){696, 345},
-                    WHITE
-                );
-
-
+                drawGrass(mapGrass);
 
                 DrawRectangleRec(mapa[0], RED);
                 DrawRectangleRec(mapa[1], RED);
@@ -390,15 +225,12 @@ int main() {
                     (Vector2){(float)618, (float)20},
                     WHITE
                 );
-
-                //safe zone
-                DrawRectangleRec(mapa[74], PINK);
-                DrawRectangleRec(mapa[75], PINK);
-                DrawRectangleRec(mapa[76], PINK);
+                
+                
 
                 //mask
                 if(power == 0) {
-                    DrawRectangleRec(mapa[80], PURPLE);
+                    // DrawRectangleRec(mapa[80], PURPLE);
                     DrawTextureRec(
                         mask,
                         (Rectangle){0.0f, 0.0f, (float)mask.width, (float)mask.height},
@@ -438,9 +270,6 @@ int main() {
                         WHITE
                     );
                 }
-                // if(soltaInimigo1 == 0) DrawTextureRec(book1, mapa[77], (Vector2){(float)15, (float)280}, WHITE);
-                // if(soltaInimigo2 == 0) DrawTextureRec(mapa[78], ORANGE);
-                // if(book3 == 0) DrawTextureRec(mapa[79], ORANGE);
                 
                 if (powerPoison(power)){
                     DrawCircleV(ballPosition, RAIO, RED);
@@ -451,298 +280,45 @@ int main() {
                 else{
                     DrawCircleV(ballPosition, RAIO, BLACK);
                 }
+
+                //safe zone
+                // DrawRectangleRec(mapa[74], PINK);
+                DrawTextureRec(
+                    cage1,
+                    (Rectangle){0.0f, 0.0f, (float)cage1.width, (float)cage1.height},
+                    (Vector2){(float)33, (float)334},
+                    WHITE
+                );
+                // DrawRectangleRec(mapa[75], PINK);
+                DrawTextureRec(
+                    cage2,
+                    (Rectangle){0.0f, 0.0f, (float)cage2.width, (float)cage2.height},
+                    (Vector2){(float)700, (float)109},
+                    WHITE
+                );
+
+                // DrawRectangleRec(mapa[76], PINK);
+                DrawTextureRec(
+                    cage3,
+                    (Rectangle){0.0f, 0.0f, (float)cage3.width, (float)cage3.height},
+                    (Vector2){(float)300, (float)19},
+                    WHITE
+                );
                 
                 if(soltaInimigo1 == 1){
                     DrawCircleV(enemyPosition, RAIO, DARKBLUE);
-                    if(enemyPosition.x >= temporary){
-                        DrawTextureRec(
-                            fantasmaRight,
-                            (Rectangle){0.0f, 0.0f, (float)fantasmaRight.width, (float)fantasmaRight.height},
-                            (Vector2){enemyPosition.x - 25, enemyPosition.y - 22},
-                            WHITE
-                        );
-                    }
-                    else if(enemyPosition.x < temporary){
-                        DrawTextureRec(
-                            fantasmaLeft,
-                            (Rectangle){0.0f, 0.0f, (float)fantasmaLeft.width, (float)fantasmaLeft.height},
-                            (Vector2){enemyPosition.x - 25, enemyPosition.y - 22},
-                            WHITE
-                        );
-                    }
+                    drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition, &temporary);
                     temporary = enemyPosition.x;
                 } 
                 if(soltaInimigo2 == 1) {
-                    DrawCircleV(enemyPosition2, RAIO, DARKBLUE);
-                    if(enemyPosition2.x >= temporary2){
-                        DrawTextureRec(
-                            fantasmaRight,
-                            (Rectangle){0.0f, 0.0f, (float)fantasmaRight.width, (float)fantasmaRight.height},
-                            (Vector2){enemyPosition2.x - 25, enemyPosition2.y - 22},
-                            WHITE
-                        );
-                    }
-                    else if(enemyPosition2.x < temporary2){
-                        DrawTextureRec(
-                            fantasmaLeft,
-                            (Rectangle){0.0f, 0.0f, (float)fantasmaLeft.width, (float)fantasmaLeft.height},
-                            (Vector2){enemyPosition2.x - 25, enemyPosition2.y - 22},
-                            WHITE
-                        );
-                    }
+                    drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition2, &temporary2);
                     temporary2 = enemyPosition2.x;
                 }
 
-                
+                //StoneWall
+                drawHorizontalWall(stoneHorizWall); 
 
-                //Stone Wall
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){0, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){80, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){160, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){240, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){320, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){400, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){480, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){560, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){640, 380},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){720, 380},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){0, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){80, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){160, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){240, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){320, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){400, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){480, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){560, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){640, 0},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){720, 0},
-                    WHITE
-                );
-
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){0, 315},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){80, 315},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){127, 315},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){0, 203},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){20, 203},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){250, 269},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){330, 269},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){350, 269},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){250, 94},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){330, 94},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){390, 94},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){384, 152},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width/1.7, (float)stoneHorizWall.height},
-                    (Vector2){484, 213}, //IMAGEM MT GRANDE PARA O RETANGULO 484
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){565, 289},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){618, 89},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){698, 89},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){726, 89},
-                    WHITE
-                );
-
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){186, 203},
-                    WHITE
-                );
-                DrawTextureRec(
-                    stoneHorizWall,
-                    (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height},
-                    (Vector2){190, 203},
-                    WHITE
-                );
-
-                
+                drawContadores(books);   
             }
         EndDrawing();
     }
