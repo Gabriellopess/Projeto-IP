@@ -36,6 +36,7 @@ int main() {
     Vector2 bullshit = {(float)0, (float)0};
     Texture2D mapGrass = LoadTexture("assets/GrassSprite.png");
     Texture2D stoneHorizWall = LoadTexture("assets/StoneWallSprite80x22.png");
+    Texture2D stoneVertWall = LoadTexture("assets/NewStoneVerticalSprite33x22.png");
     Texture2D book1text = LoadTexture("assets/book1Sprite40x40.png");
     Texture2D book2text = LoadTexture("assets/book2Sprite40x40.png");
     Texture2D book3text = LoadTexture("assets/book3Sprite40x40.png");
@@ -742,7 +743,451 @@ int main() {
                     WHITE
                 );
 
+                // paredes verticais 
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 22}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 55}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 88}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 121}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 154}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 187}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 220}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 253}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){-13, 286}, // vertical grandona do lado esquerdo da tela
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){75, 288}, // lado direito do livro azul (tem que ser pequeninho)
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){185, 22}, // segunda coluna de cima pra baixo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){185, 55}, // segunda coluna de cima pra baixo2
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){185, 88}, // segunda coluna de cima pra baixo3
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){185, 121}, // segunda coluna de cima pra baixo4
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){185, 128}, // segunda coluna de cima pra baixo5
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){249, 290},  // a esquerda do livro amarelo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){249, 323}, // a esquerda do livro amarelo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){249, 347}, // a esquerda do livro amarelo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 111}, // vertical grandona do canto direito
+                    WHITE
+                );
                 
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 144}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 177}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 210}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 243}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 276}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 309}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 342}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){790, 349}, // vertical grandona do canto direito
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){617, 90}, // a esquerda do livro marrom1
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){617, 123}, // a esquerda do livro marrom2
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){617, 139}, // a esquerda do livro marrom3
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){565, 311}, // segunda coluna de baixo pra cima
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){565, 344}, // segunda coluna de baixo pra cima
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){565, 350}, // segunda coluna de baixo pra cima
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){400, 20}, // terceira coluna de cima pra baixo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){400, 53}, // terceira coluna de cima pra baixo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){400, 62}, // terceira coluna de cima pra baixo
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){463, 154}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){463, 187}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){463, 220}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){463, 253}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){463, 274}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){534, 20}, 
+                    WHITE
+                ); 
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){534, 53}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){534, 86}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){534, 100}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){383, 174}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){383, 195}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){409, 290}, 
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){409, 310},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){314, 116},
+                    WHITE
+                );
+                
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){314, 122},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){314, 197},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){314, 230},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){314, 238},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){38, 247},
+                    WHITE
+                );
+
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){52, 71},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){52, 89},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){185, 225},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){185, 234},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){185, 250},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height/1.8},
+                    (Vector2){185, 252},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){249, 154},
+                    WHITE
+                );
+
+                DrawTextureRec(
+                    stoneVertWall,
+                    (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
+                    (Vector2){249, 170},
+                    WHITE
+                );
+
             }
         EndDrawing();
     }
