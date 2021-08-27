@@ -472,5 +472,3 @@ void collisionEnemy(Vector2 enemyPosition,Vector2 enemyPosition2,float *enemyPos
 
     free(mapa);
 }
-
-

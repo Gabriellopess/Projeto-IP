@@ -22,10 +22,16 @@ int main() {
     int gatilho=0;
     int gatilho2=0;
     int gatilho3=0;
-
+ 
  
  
     InitWindow(screenWidth, screenHeight, "raylib");
+    //music
+    InitAudioDevice();
+    Music music = LoadMusicStream("assets/music2.mp3");
+    float volume = 0.5f;
+    PlayMusicStream(music);
+    
     SetWindowTitle(title);
  
     Vector2 enemyPosition2 = { (float)33, (float)356 };
@@ -33,7 +39,7 @@ int main() {
     Vector2 fireBall1 = { (float)(180), (float)420 };
     Vector2 fireBall2 = { (float)340, (float)420 };
     Vector2 fireBall3 = { (float)495, (float)420 };
-
+ 
     Player player = { 0 };
     player.position = (Vector2){ 80, 79};
     player.velocidade = 0;
@@ -96,78 +102,56 @@ int main() {
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         float deltaTime = GetFrameTime();
- 
+
+        UpdateMusicStream(music);//music
+        
         UpdatePlayer(&player, envItems, envItemsLength, deltaTime);
+        //volume
+        if (IsKeyDown(KEY_M)) volume -= 0.01f;
+        else if (IsKeyDown(KEY_N)) volume += 0.01f;
+        SetMusicVolume(music, volume);
+        
+        
         //fantasmas
-        if(player.position.x > enemyPosition.x) enemyPosition.x += 0.65f;
-        if(player.position.x < enemyPosition.x) enemyPosition.x -= 0.65f;
-        if(player.position.y > enemyPosition.y) enemyPosition.y += 0.65f;
-        if(player.position.y < enemyPosition.y) enemyPosition.y -= 0.65f;
-
-        if(player.position.x > enemyPosition2.x) enemyPosition2.x += 0.75f;
-        if(player.position.x < enemyPosition2.x) enemyPosition2.x -= 0.75f;
-        if(player.position.y > enemyPosition2.y) enemyPosition2.y += 0.75f;
-        if(player.position.y < enemyPosition2.y) enemyPosition2.y -= 0.75f;
+        if(player.position.x > enemyPosition.x) enemyPosition.x += 0.70f;
+        if(player.position.x < enemyPosition.x) enemyPosition.x -= 0.70f;
+        if(player.position.y > enemyPosition.y) enemyPosition.y += 0.70f;
+        if(player.position.y < enemyPosition.y) enemyPosition.y -= 0.70f;
+ 
+        if(player.position.x > enemyPosition2.x) enemyPosition2.x += 0.85f;
+        if(player.position.x < enemyPosition2.x) enemyPosition2.x -= 0.85f;
+        if(player.position.y > enemyPosition2.y) enemyPosition2.y += 0.85f;
+        if(player.position.y < enemyPosition2.y) enemyPosition2.y -= 0.85f;
         //bolas de fogo
-
+ 
         if(fireBall1.y >= (-20) && gatilho == 0){
-            fireBall1.y -= 5.0f;
+            fireBall1.y -= 3.0f;
             if(fireBall1.y <= (-20)) gatilho=1;
         }
         else{
-            fireBall1.y += 5.0f;
+            fireBall1.y += 3.0f;
             if(fireBall1.y >= 420) gatilho=0;
         } 
-
+ 
         if(fireBall2.y >= (-20) && gatilho2 == 0){
-            fireBall2.y -= 5.0f;
+            fireBall2.y -= 3.0f;
             if(fireBall2.y <= (-20)) gatilho2=1;
         }
         else{
-            fireBall2.y += 5.0f;
+            fireBall2.y += 3.0f;
             if(fireBall2.y >= 420) gatilho2=0;
         } 
-
+ 
         if(fireBall3.y >= (-20) && gatilho3 == 0){
-            fireBall3.y -= 5.0f;
+            fireBall3.y -= 3.0f;
             if(fireBall3.y <= (-20)) gatilho3=1;
         }
         else{
-            fireBall3.y += 5.0f;
+            fireBall3.y += 3.0f;
             if(fireBall3.y >= 420) gatilho3=0;
         } 
-        /*
-        //colisoes c inimigo
-        if(CheckCollisionCircleRec(enemyPosition, 7, player.position)){
-            enemyPosition = { (float)600, (float)20 };
-            enemyPosition2 = { (float)33, (float)356 };
-            player.position = { 80, 79};
-        }
-
-        if(CheckCollisionCircleRec(enemyPosition2, 7, player.position)){
-            enemyPosition = { (float)600, (float)20 };
-            enemyPosition2 = { (float)33, (float)356 };
-            player.position = { 80, 79};
-        }
-
-        if(CheckCollisionCircleRec(fireBall1, 15, player.position)){
-            enemyPosition = { (float)600, (float)20 };
-            enemyPosition2 = { (float)33, (float)356 };
-            player.position = { 80, 79};
-        }
-
-        if(CheckCollisionCircleRec(fireBall2, 15, player.position)){
-            enemyPosition = { (float)600, (float)20 };
-            enemyPosition2 = { (float)33, (float)356 };
-            player.position = { 80, 79};
-        }
-
-        if(CheckCollisionCircleRec(fireBall3, 15, player.position)){
-            enemyPosition = { (float)600, (float)20 };
-            enemyPosition2 = { (float)33, (float)356 };
-            player.position = { 80, 79};
-        }
-        */
+ 
+ 
         BeginDrawing();
  
             ClearBackground(SKYBLUE);
@@ -183,11 +167,64 @@ int main() {
                 DrawCircleV(fireBall3, 15, RED);
                 DrawRectangleRec(playerRect, RED);
  
+                //colisoes c inimigo
+        if(CheckCollisionCircleRec(enemyPosition, 7, playerRect)){
+            enemyPosition.x = 600;
+            enemyPosition.y = 20;
+            enemyPosition2.x = 33;
+            enemyPosition2.y = 256;
+            player.position.x = 80;
+            player.position.y = 79;
+        }
+        if(CheckCollisionCircleRec(enemyPosition2, 7, playerRect)){
+            enemyPosition.x = 600;
+            enemyPosition.y = 20;
+            enemyPosition2.x = 33;
+            enemyPosition2.y = 256;
+            player.position.x = 80;
+            player.position.y = 79;
+        }
+        if(CheckCollisionCircleRec(fireBall1, 15, playerRect)){
+            enemyPosition.x = 600;
+            enemyPosition.y = 20;
+            enemyPosition2.x = 33;
+            enemyPosition2.y = 256;
+            player.position.x = 80;
+            player.position.y = 79;
+        }
+        if(CheckCollisionCircleRec(fireBall2, 15, playerRect)){
+            enemyPosition.x = 600;
+            enemyPosition.y = 20;
+            enemyPosition2.x = 33;
+            enemyPosition2.y = 256;
+            player.position.x = 80;
+            player.position.y = 79;
+        }
+        if(CheckCollisionCircleRec(fireBall3, 15, playerRect)){
+            enemyPosition.x = 600;
+            enemyPosition.y = 20;
+            enemyPosition2.x = 33;
+            enemyPosition2.y = 256;
+            player.position.x = 80;
+            player.position.y = 79;
+        }
+        if(player.position.y == 370){
+            enemyPosition.x = 600;
+            enemyPosition.y = 20;
+            enemyPosition2.x = 33;
+            enemyPosition2.y = 256;
+            player.position.x = 80;
+            player.position.y = 79;
+        }
+ 
         EndDrawing();
  
  
     }
  
+ 
+    UnloadMusicStream(music);//close music
+    CloseAudioDevice();//para audio
     CloseWindow();  
     return 0;
 }
