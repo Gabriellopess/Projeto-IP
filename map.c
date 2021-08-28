@@ -178,14 +178,6 @@ Rectangle *map(){
     Rectangle areaSeguranca3 = {(float)300, (float)20, (float)100, (float)75};
     vet[76]= areaSeguranca3;
 
-    //books
-    // Rectangle actGhost1 = {(float)15, (float)280, (float)25, (float)25};
-    // vet[77]= actGhost1;
-    // Rectangle actGhost2 = {(float)275, (float)300, (float)25, (float)25};
-    // vet[78]= actGhost2;
-    // Rectangle actGhost3 = {(float)650, (float)120, (float)25, (float)25};
-    // vet[79]= actGhost3;
-
     Rectangle actGhost1 = {(float)15, (float)280, (float)25, (float)25};
     vet[77]= actGhost1;
     Rectangle actGhost2 = {(float)275, (float)300, (float)25, (float)25};

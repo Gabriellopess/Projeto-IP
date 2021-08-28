@@ -94,5 +94,10 @@ void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFrame
         *framesCounter = 0;
     }
 
+    if(IsKeyDown(KEY_ENTER)) {
+        *gameStage = 1;
+        *framesCounter = 0;
+    }
+
     if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && mousePosition.x >= 500 && mousePosition.x <= 650 && mousePosition.y >= 260 && mousePosition.y <= 310) CloseWindow();
 }

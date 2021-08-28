@@ -10,6 +10,14 @@
 
 #define RAIO 7
 
+/*
+Define para nome das fases;
+struct para os estados;
+função para chamar nos gameStages;
+reutilização de codigo criando função;
+*/
+
+
 //mingw32-make PLATFORM=PLATFORM_DESKTOP
 
 int main() {
@@ -24,7 +32,7 @@ int main() {
     float temporary = 0;
     float temporary2 = 0;
 
-    int power =0;
+    int power = 0;
     int soltaInimigo1 =0;
     int soltaInimigo2 =0;
     int book3 =0;
@@ -44,11 +52,12 @@ int main() {
     Texture2D fantasmaRight = LoadTexture("assets/fantasmaSprite50x50.png");
     Texture2D fantasmaLeft = LoadTexture("assets/fantasmaLeftSprite50x50.png");
     Texture2D mask = LoadTexture("assets/mask2Sprite.png");
-    Texture2D veneno = LoadTexture("assets/venenoSprite.png");
+    Texture2D veneno = LoadTexture("assets/venom.png");
     Texture2D cage3 = LoadTexture("assets/cage3.png");
     Texture2D cage2 = LoadTexture("assets/cage2.png");
     Texture2D cage1 = LoadTexture("assets/cage1.png");
-    Rectangle stoneWallRec = {0.0f, 0.0f, (float)stoneHorizWall.width, (float)stoneHorizWall.height};
+    Texture2D door = LoadTexture("assets/castleDoor49x60.png");
+    Texture2D diagWall = LoadTexture("assets/wall1.png");
 
     mapa = map();
     
@@ -113,6 +122,7 @@ int main() {
                     deathHero(&books,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
                 }
             }
+
    
         }
         
@@ -204,21 +214,21 @@ int main() {
                 DrawRectangleRec(mapa[70], BLACK);
 
                 //veneno
-                DrawRectangleRec(mapa[71], GREEN);
+                // DrawRectangleRec(mapa[71], GREEN);
                 DrawTextureRec(
                     veneno,
                     (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
-                    (Vector2){(float)410, (float)335},
+                    (Vector2){(float)409, (float)330},
                     WHITE
                 );
-                DrawRectangleRec(mapa[72], GREEN);
+                // DrawRectangleRec(mapa[72], GREEN);
                 DrawTextureRec(
                     veneno,
                     (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
                     (Vector2){(float)52, (float)20},
                     WHITE
                 );
-                DrawRectangleRec(mapa[73], GREEN);
+                // DrawRectangleRec(mapa[73], GREEN);
                 DrawTextureRec(
                     veneno,
                     (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
@@ -240,7 +250,13 @@ int main() {
                 }
                 
                 //porta de saida
-                DrawRectangleRec(mapa[81], GRAY);
+                // DrawRectangleRec(mapa[81], GRAY);
+                DrawTextureRec(
+                    door,
+                    (Rectangle){0.0f, 0.0f, (float)door.width, (float)door.height},
+                    (Vector2){(float)752, (float)28},
+                    WHITE
+                );
 
                 //books
                 if(soltaInimigo1 == 0) {
@@ -316,7 +332,10 @@ int main() {
                 }
 
                 //StoneWall
-                drawHorizontalWall(stoneHorizWall); 
+                drawDiagWall(diagWall);
+                drawHorizontalWall(stoneHorizWall);
+
+                 
 
                 drawContadores(books);   
             }
