@@ -43,9 +43,10 @@ int main() {
 
     //mapa
     Rectangle *mapa = NULL;
-    Vector2 bullshit = {(float)0, (float)0};
+    // Vector2 bullshit = {(float)0, (float)0};
     Texture2D mapGrass = LoadTexture("assets/GrassSprite.png");
     Texture2D stoneHorizWall = LoadTexture("assets/StoneWallSprite80x22.png");
+    Texture2D stoneVertWall = LoadTexture("assets/NewStoneVerticalSprite33x22.png");
     Texture2D book1text = LoadTexture("assets/book1Sprite40x40.png");
     Texture2D book2text = LoadTexture("assets/book2Sprite40x40.png");
     Texture2D book3text = LoadTexture("assets/book3Sprite40x40.png");
@@ -140,107 +141,10 @@ int main() {
                 //grama textura
                 drawGrass(mapGrass);
 
-                DrawRectangleRec(mapa[0], RED);
-                DrawRectangleRec(mapa[1], RED);
-                DrawRectangleRec(mapa[2], RED);
-                DrawRectanglePro(mapa[3], bullshit, 50, RED); 
-                DrawRectanglePro(mapa[4], bullshit, 50, RED);
-                DrawRectangleRec(mapa[5], RED);
-                DrawRectangleRec(mapa[6], RED);
-                DrawRectanglePro(mapa[7], bullshit, -230, RED); 
-                DrawRectanglePro(mapa[8], bullshit, -230, RED); 
-                DrawRectangleRec(mapa[9], RED);
-                DrawRectangleRec(mapa[10], RED);
-                DrawRectangleRec(mapa[11], RED);
-                DrawRectangleRec(mapa[12], RED);
-                DrawRectangleRec(mapa[13], RED);
-                DrawRectangleRec(mapa[14], RED);
-                DrawRectangleRec(mapa[15], RED);
-                DrawRectangleRec(mapa[16], RED);
-                DrawRectangleRec(mapa[17], RED);
-                DrawRectangleRec(mapa[18], RED);
-                DrawRectangleRec(mapa[19], RED);
-                DrawRectangleRec(mapa[20], RED);
-                DrawRectangleRec(mapa[21], RED);
-                DrawRectangleRec(mapa[22], RED);
-                DrawRectangleRec(mapa[23], RED);
-                DrawRectangleRec(mapa[24], RED);
-                DrawRectangleRec(mapa[25], RED);
-                DrawRectanglePro(mapa[26], bullshit, 45, RED);
-                DrawRectangleRec(mapa[27], RED);
-                DrawRectanglePro(mapa[28], bullshit, 45, RED);
-                DrawRectangleRec(mapa[29], RED);
-                DrawRectangleRec(mapa[30], RED);
-                DrawRectangleRec(mapa[31], RED);
-                DrawRectangleRec(mapa[32], RED);
-                DrawRectangleRec(mapa[33], RED);
-                DrawRectangleRec(mapa[34], RED);
-                DrawRectanglePro(mapa[35], bullshit, -40, RED);
-
-                DrawRectangleRec(mapa[36], BLACK);
-                DrawRectangleRec(mapa[37], BLACK);
-                DrawRectangleRec(mapa[38], BLACK);
-                DrawRectangleRec(mapa[39], BLACK);
-                DrawRectangleRec(mapa[40], BLACK);
-                DrawRectangleRec(mapa[41], BLACK);
-                DrawRectangleRec(mapa[42], BLACK);
-                DrawRectangleRec(mapa[43], BLACK);
-                DrawRectangleRec(mapa[44], BLACK);
-                DrawRectangleRec(mapa[45], BLACK);
-                DrawRectangleRec(mapa[46], BLACK);
-                DrawRectangleRec(mapa[47], BLACK);
-                DrawRectangleRec(mapa[48], BLACK);
-                DrawRectangleRec(mapa[49], BLACK);
-                DrawRectangleRec(mapa[50], BLACK);
-                DrawRectangleRec(mapa[51], BLACK);
-                DrawRectangleRec(mapa[52], BLACK);
-                DrawRectangleRec(mapa[53], BLACK);
-                DrawRectangleRec(mapa[54], BLACK);
-                DrawRectangleRec(mapa[55], BLACK);
-                DrawRectangleRec(mapa[56], BLACK);
-                DrawRectangleRec(mapa[57], BLACK);
-                DrawRectangleRec(mapa[58], BLACK);
-                DrawRectangleRec(mapa[59], BLACK);
-                DrawRectangleRec(mapa[60], BLACK);
-                DrawRectangleRec(mapa[61], BLACK);
-                DrawRectangleRec(mapa[62], BLACK);
-                DrawRectangleRec(mapa[63], BLACK);
-                DrawRectangleRec(mapa[64], BLACK);
-                DrawRectangleRec(mapa[65], BLACK);
-                DrawRectangleRec(mapa[66], BLACK);
-                DrawRectangleRec(mapa[67], BLACK);
-                DrawRectangleRec(mapa[68], BLACK);
-                DrawRectangleRec(mapa[69], BLACK);
-                DrawRectangleRec(mapa[70], BLACK);
-
-                //veneno
-                // DrawRectangleRec(mapa[71], GREEN);
-                DrawTextureRec(
-                    veneno,
-                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
-                    (Vector2){(float)409, (float)330},
-                    WHITE
-                );
-                // DrawRectangleRec(mapa[72], GREEN);
-                DrawTextureRec(
-                    veneno,
-                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
-                    (Vector2){(float)52, (float)20},
-                    WHITE
-                );
-                // DrawRectangleRec(mapa[73], GREEN);
-                DrawTextureRec(
-                    veneno,
-                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
-                    (Vector2){(float)618, (float)20},
-                    WHITE
-                );
-                
                 
 
                 //mask
                 if(power == 0) {
-                    // DrawRectangleRec(mapa[80], PURPLE);
                     DrawTextureRec(
                         mask,
                         (Rectangle){0.0f, 0.0f, (float)mask.width, (float)mask.height},
@@ -250,7 +154,6 @@ int main() {
                 }
                 
                 //porta de saida
-                // DrawRectangleRec(mapa[81], GRAY);
                 DrawTextureRec(
                     door,
                     (Rectangle){0.0f, 0.0f, (float)door.width, (float)door.height},
@@ -260,7 +163,6 @@ int main() {
 
                 //books
                 if(soltaInimigo1 == 0) {
-                    // DrawRectangleRec(mapa[77], ORANGE);
                     DrawTextureRec(
                         book1text,
                         (Rectangle){0.0f, 0.0f, (float)book1text.width, (float)book1text.height},
@@ -269,7 +171,6 @@ int main() {
                     );
                 }
                 if(soltaInimigo2 == 0){
-                    // DrawRectangleRec(mapa[78], ORANGE);
                     DrawTextureRec(
                         book2text,
                         (Rectangle){0.0f, 0.0f, (float)book2text.width, (float)book2text.height},
@@ -278,7 +179,6 @@ int main() {
                     );
                 } 
                 if(book3 == 0) {
-                    // DrawRectangleRec(mapa[79], ORANGE);
                     DrawTextureRec(
                         book3text,
                         (Rectangle){0.0f, 0.0f, (float)book3text.width, (float)book3text.height},
@@ -286,7 +186,47 @@ int main() {
                         WHITE
                     );
                 }
+
+                //StoneWall
+                drawDiagWall(diagWall);
+                drawVertWall(stoneVertWall);
                 
+                //veneno
+                DrawTextureRec(
+                    veneno,
+                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
+                    (Vector2){(float)409, (float)330},
+                    WHITE
+                );
+                DrawTextureRec(
+                    veneno,
+                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
+                    (Vector2){(float)52, (float)20},
+                    WHITE
+                );
+                DrawTextureRec(
+                    veneno,
+                    (Rectangle){0.0f, 0.0f, (float)veneno.width, (float)veneno.height},
+                    (Vector2){(float)618, (float)20},
+                    WHITE
+                );
+
+                //Stone wall
+                drawHorizontalWall(stoneHorizWall);
+                
+                 
+                //fantasmas
+                if(soltaInimigo1 == 1){
+                    DrawCircleV(enemyPosition, RAIO, DARKBLUE);
+                    drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition, &temporary);
+                    temporary = enemyPosition.x;
+                } 
+                if(soltaInimigo2 == 1) {
+                    drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition2, &temporary2);
+                    temporary2 = enemyPosition2.x;
+                }
+
+                //Personagem
                 if (powerPoison(power)){
                     DrawCircleV(ballPosition, RAIO, RED);
                 }
@@ -298,46 +238,27 @@ int main() {
                 }
 
                 //safe zone
-                // DrawRectangleRec(mapa[74], PINK);
                 DrawTextureRec(
                     cage1,
                     (Rectangle){0.0f, 0.0f, (float)cage1.width, (float)cage1.height},
                     (Vector2){(float)33, (float)334},
                     WHITE
                 );
-                // DrawRectangleRec(mapa[75], PINK);
                 DrawTextureRec(
                     cage2,
                     (Rectangle){0.0f, 0.0f, (float)cage2.width, (float)cage2.height},
                     (Vector2){(float)700, (float)109},
                     WHITE
                 );
-
-                // DrawRectangleRec(mapa[76], PINK);
                 DrawTextureRec(
                     cage3,
                     (Rectangle){0.0f, 0.0f, (float)cage3.width, (float)cage3.height},
                     (Vector2){(float)300, (float)19},
                     WHITE
                 );
-                
-                if(soltaInimigo1 == 1){
-                    DrawCircleV(enemyPosition, RAIO, DARKBLUE);
-                    drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition, &temporary);
-                    temporary = enemyPosition.x;
-                } 
-                if(soltaInimigo2 == 1) {
-                    drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition2, &temporary2);
-                    temporary2 = enemyPosition2.x;
-                }
 
-                //StoneWall
-                drawDiagWall(diagWall);
-                drawHorizontalWall(stoneHorizWall);
 
-                 
-
-                drawContadores(books);   
+                drawContadores(books);
             }
         EndDrawing();
     }
