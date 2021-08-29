@@ -5,6 +5,7 @@
         "enemy.h": "c",
         "introducao.h": "c",
         "texturas.h": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "stdlib.h": "c"
     }
 }

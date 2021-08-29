@@ -41,6 +41,9 @@ int main() {
     Vector2 enemyPosition2;
     Vector2 enemyPosition;
 
+    //plataforma
+    
+
     //mapa
     Rectangle *mapa = NULL;
     // Vector2 bullshit = {(float)0, (float)0};
@@ -123,8 +126,6 @@ int main() {
                     deathHero(&books,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power,33,356);
                 }
             }
-
-   
         }
         
         BeginDrawing();
@@ -140,8 +141,6 @@ int main() {
                 //labirinto
                 //grama textura
                 drawGrass(mapGrass);
-
-                
 
                 //mask
                 if(power == 0) {
@@ -268,3 +267,4 @@ int main() {
     free(mapa);
     return 0;
 }
+
