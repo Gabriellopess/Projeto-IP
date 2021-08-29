@@ -99,5 +99,62 @@ void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFrame
         *framesCounter = 0;
     }
 
+    if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && mousePosition.x >= 500 && mousePosition.x <= 650 && mousePosition.y >= 205 && mousePosition.y <= 255){
+        *gameStage = 6;
+    }
+
     if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && mousePosition.x >= 500 && mousePosition.x <= 650 && mousePosition.y >= 260 && mousePosition.y <= 310) CloseWindow();
+}
+
+void drawControls(Texture2D controls,Texture2D background, Texture2D castle, Vector2 castlePosition, Rectangle castleFrameRec,
+                Texture2D backButton, Texture2D whiteBackButton)
+{
+    Vector2 mousePosition = GetMousePosition();
+    ClearBackground(BLACK);
+    DrawTextureRec(
+        background,
+        (Rectangle){0.0f, 0.0f, (float)background.width, (float)background.height},
+        (Vector2){0, 0},
+        WHITE
+    );
+    DrawTextureRec(
+        castle,
+        castleFrameRec,
+        castlePosition,
+        WHITE
+    );
+
+    DrawRectangleGradientH(0, 0, 800, 400, BLACK, BLANK);
+    DrawRectangleGradientH(0, 0, 800, 400, BLANK, BLACK);
+
+    DrawTextureRec(
+        controls,
+        (Rectangle){0.0f, 0.0f, (float)controls.width, (float)controls.height},
+        (Vector2){0, 0},
+        WHITE
+    );
+
+    if(mousePosition.x >= 10 && mousePosition.x <= 160 && mousePosition.y >= 10 && mousePosition.y <= 60){
+        DrawTextureRec(
+            whiteBackButton,
+            (Rectangle){0.0f, 0.0f, (float)whiteBackButton.width, (float)whiteBackButton.height},
+            (Vector2){10, 10},
+            WHITE
+        );
+    } else {
+        DrawTextureRec(
+            backButton,
+            (Rectangle){0.0f, 0.0f, (float)backButton.width, (float)backButton.height},
+            (Vector2){10, 10},
+            WHITE
+        );
+    }
+}
+
+void controlsLogic(int *gameStage){
+    Vector2 mousePosition = GetMousePosition();
+    
+    if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && mousePosition.x >= 10 && mousePosition.x <= 160 && mousePosition.y >= 10 && mousePosition.y <= 60) {
+        *gameStage = 0;
+    }
 }

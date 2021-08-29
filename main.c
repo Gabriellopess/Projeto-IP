@@ -2,12 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include "pthread.h"
 #include "enemy.h"
 #include "hero.h"
 #include "map.h"
 #include "introducao.h"
 #include "texturas.h"
 #include "texto.h"
+#include "plataforma.h"
 
 #define RAIO 7
 #define G 400
@@ -19,6 +21,7 @@
 #define TEXTO2 3
 #define PLATAFORMA 4
 #define FINAL 5
+#define CONTROLES 6
 
 typedef struct Player {
     Vector2 position;
@@ -50,16 +53,11 @@ int main() {
     SetWindowTitle(title);
     SetTargetFPS(60);
 
-    int countTime = 0;
-    float timeInitial, timeMeasured, timeDelta = 0;
-    timeInitial = (float)clock();
-
+    int framesCounterTime = 0;
     float aux1 = 0;
     int gameStage = 0;
     float temporary = 0;
     float temporary2 = 0;
-    int timeElapsed = GetTime();
-    int auxTime = 0;
 
     int power = 0;
     int soltaInimigo1 =0;
@@ -90,6 +88,7 @@ int main() {
     Texture2D lava = LoadTexture("assets/lava.png");
     Texture2D fireballUp = LoadTexture("assets/fireballUp45x94.png");
     Texture2D fireballDown = LoadTexture("assets/fireballDown45x94.png");
+    Texture2D heart = LoadTexture("assets/heart28x28.png");
  
  
     Vector2 enemyPosition2plat = { (float)33, (float)356 };
@@ -158,6 +157,10 @@ int main() {
     Texture2D whiteControlsButton = LoadTexture("assets/whiteControlsButton.png");
     Texture2D exitButton = LoadTexture("assets/exitButton150x50.png");
     Texture2D whiteExitButton = LoadTexture("assets/whiteExitButton.png");
+    Texture2D backButton = LoadTexture("assets/back.png");
+    Texture2D whiteBackButton = LoadTexture("assets/whiteBack.png");
+
+    Texture2D controls = LoadTexture("assets/controls.png");
 
     //background introducao
     Texture2D background = LoadTexture("assets/grassFundo.png");
@@ -222,23 +225,15 @@ int main() {
         }
     }
 
-    /*
-    void drawFireBall(Texture2D fireball, Vector2 fire){
-        if(y == -60){
-            DrawTextureV(balldown, fire, WHITE);
-        }
-        if(y == 460){
-            DrawTextureV(ballup, fire, WHITE);
-        }
-    }
-    */
-
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
         if(gameStage == INTRODUCAO){
             //Introducao
             introducaoLogic(castle, &castleFramesCounter, castleFramesSpeed, &castleCurrentFrame, &castleFrameRec, &framesCounter, &gameStage);
+        }
+        if(gameStage == CONTROLES){
+            controlsLogic(&gameStage);
         }
         if(gameStage == TEXTO1){
             textLogic(&framesCounter, &gameStage);
@@ -255,7 +250,7 @@ int main() {
 
             if (!hacker()){
                 //colisoes com o terreno (hero)
-                collisionHero(&countTime, &auxTime, &timeElapsed, &gameStage, &books,ballPosition,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power);               
+                collisionHero(&gameStage, &books,ballPosition,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power);               
                 //colisoes com o terreno (enemy)
                 collisionEnemy(enemyPosition,enemyPosition2,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
                 
@@ -271,7 +266,7 @@ int main() {
 
         if(gameStage == PLATAFORMA){
             float deltaTime = GetFrameTime();
- 
+            framesCounterTime++;
             UpdatePlayer(&player, envItems, envItemsLength, deltaTime);
             UpdateMusicStream(music);//music
             //volume
@@ -323,6 +318,9 @@ int main() {
             if(gameStage == INTRODUCAO){
                 //introducao
                 introducao(background, castle, playButton, whitePlayButton, controlsButton, whiteControlsButton, exitButton, whiteExitButton, &castleFrameRec, castlePosition, message, framesCounter);
+            }
+            if(gameStage == CONTROLES){
+                drawControls(controls,background,castle,castlePosition, castleFrameRec, backButton, whiteBackButton);
             }
             if(gameStage == TEXTO1){
                 drawText(background, castle, castlePosition, castleFrameRec,secondMessage, framesCounter);
@@ -449,8 +447,8 @@ int main() {
             }
 
             if(gameStage == PLATAFORMA){
-                int tempo = GetTime();
-
+                float time = GetFrameTime();
+            
                 if(!(finish == 1)){
                     //background completo
                     float a = 0, b = 0; 
@@ -498,6 +496,10 @@ int main() {
                     DrawCircleV(enemyPositionplat, 7, DARKBLUE);
                     DrawCircleV(enemyPosition2plat, 7, DARKBLUE);
 
+                    //limitando as laterais
+                    if(player.position.x < 0) player.position.x = 0;
+                    if(player.position.x > screenWidth) player.position.x = screenWidth;
+
                     // DrawCircleV(fireBall1, 15, RED);
                     // DrawTextureRec(
                     //     fireballUp,
@@ -534,31 +536,38 @@ int main() {
                     drawFantasma(fantasmaRight, fantasmaLeft, enemyPosition2plat, &temporary2plat);
                     temporary2plat = enemyPosition2plat.x;
 
-                    DrawText(TextFormat("Tempo: %d", 30 - tempo), 350, 20, 22, BLACK);
-
                     //colisoes c inimigo
                     if(CheckCollisionCircleRec(enemyPositionplat, 7, playerRect)){
-                        deathHero2(&tempo,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
+                        deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
                     if(CheckCollisionCircleRec(enemyPosition2plat, 7, playerRect)){
-                        deathHero2(&tempo,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
+                        deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
                     if(CheckCollisionCircleRec(fireBall1, 15, playerRect)){
-                        deathHero2(&tempo,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
+                        deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
                     if(CheckCollisionCircleRec(fireBall2, 15, playerRect)){
-                        deathHero2(&tempo,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
+                        deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
                     if(CheckCollisionCircleRec(fireBall3, 15, playerRect)){
-                        deathHero2(&tempo,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
+                        deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
                     if(player.position.y == 370){
-                        deathHero2(&tempo,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
+                        deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
 
-                    DrawText(TextFormat("Lifes: %d",lifes), 700, 110, 23, BLACK);
+                    // DrawText(TextFormat("Lifes: %d",lifes), 700, 110, 23, BLACK);
+                    // DrawTextureRec(
+                    //     heart,
+                    //     (Rectangle){0.0f, 0.0f, heart.width, heart.height}, 
+                    //     (Vector2){700, 170},
+                    //     WHITE);
+                    drawHearts(heart, &lifes);
+                    // DrawText(TextFormat("Tempo: %d", 30 - (framesCounterTime/60)), 350, 20, 25, BLACK);
+                    drawTimer(&framesCounterTime);
+
                     if(lifes <= 0) finish = 1;
-                    else if(tempo == 30) finish = 1;
+                    else if((framesCounterTime/60) == 30) finish = 1;
                 }
                 else if(lifes > 0){    
                     ClearBackground(SKYBLUE);

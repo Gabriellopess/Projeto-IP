@@ -198,7 +198,7 @@ Rectangle *map(){
 
 
 
-void collisionHero(int *countTime,int *auxTime, int *timeElapsed, int *gameStage, int *books, Vector2 ballPosition,float *ballPositionx,float *ballPositiony,int *soltaInimigo1,int *soltaInimigo2,int * book3,int *power){
+void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballPositionx,float *ballPositiony,int *soltaInimigo1,int *soltaInimigo2,int * book3,int *power){
     Rectangle *mapa = NULL;
     mapa = map();
 
@@ -450,10 +450,6 @@ void collisionHero(int *countTime,int *auxTime, int *timeElapsed, int *gameStage
     && (*book3) == 1){
         // CloseWindow(); 
         *gameStage = 4;
-        if(countTime == 0){
-            *auxTime = *timeElapsed;
-            *countTime = 1;
-        }
     } 
     else if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[81])){
         (*ballPositionx) = 770;
