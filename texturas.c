@@ -26,6 +26,25 @@ void drawFantasma(Texture2D fantasma1, Texture2D fantasma2, Vector2 enemyPositio
     }
 }
 
+void drawFireBall(Texture2D fireballUp, Texture2D fireballDown, Vector2 fire, float *aux){
+    if(fire.y <= *aux){
+        DrawTextureRec(
+            fireballUp,
+            (Rectangle){0.0f, 0.0f, fireballUp.width, fireballUp.height}, 
+            (Vector2){fire.x - 22, fire.y - 32},
+            WHITE
+        );
+    }
+    if(fire.y > *aux){
+        DrawTextureRec(
+            fireballDown,
+            (Rectangle){0.0f, 0.0f, fireballDown.width, fireballDown.height}, 
+            (Vector2){fire.x - 22, fire.y - 45},
+            WHITE
+        );
+    }
+}
+
 void drawDiagWall(Texture2D diagWall){
     Texture2D diagWall2 = LoadTexture("assets/24wall3.png");
     Texture2D diagWall3 = LoadTexture("assets/wall2.png");

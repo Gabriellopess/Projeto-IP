@@ -18,6 +18,18 @@ void deathHero(int *books, float *ballPositionx,float *ballPositiony,int *soltaI
     (*books) = 0;
 }
 
+void deathHero2(int *tempo, float *playerpositionx,float *playerpositiony,float *enemyPositionx,float *enemyPositiony,float *enemyPosition2x,float *enemyPosition2y,int *lifes){
+    (*playerpositionx) = 80;
+    (*playerpositiony)= 79;
+    (*enemyPosition2x) = 33;
+    (*enemyPosition2y) = 256;
+    (*enemyPositionx) = 600;
+    (*enemyPositiony) = 20;
+    (*lifes)--;
+    (*tempo) = 0;
+}
+
+
 int hacker(){
     if(IsKeyDown(KEY_M) && IsKeyDown(KEY_A) && IsKeyDown(KEY_R)) return 1;
     else return 0;
