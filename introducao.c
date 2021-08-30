@@ -65,9 +65,7 @@ void introducao(Texture2D background, Texture2D castle, Texture2D playButton, Te
             WHITE
         );
     }
-    DrawText(TextSubtext(message, 0, framesCounter/10), 480, 30, 35, RAYWHITE);
-    // DrawText("PRESSIONE [ESPAÇO] PARA ADIANTAR!", 392, 265, 20, LIGHTGRAY);
-    // DrawText("PRESSIONE [PLAY] PARA JOGAR!", 390, 290, 20, LIGHTGRAY);
+    DrawText(TextSubtext(message, 0, framesCounter/5), 480, 30, 40, BLACK);
 }
 
 void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFramesSpeed, int *castleCurrentFrame,
@@ -90,11 +88,6 @@ void introducaoLogic(Texture2D castle, int *castleFramesCounter, int castleFrame
     else (*framesCounter)++;
 
     if(IsMouseButtonPressed(MOUSE_BUTTON_LEFT) && mousePosition.x >= 500 && mousePosition.x <= 650 && mousePosition.y >= 150 && mousePosition.y <= 200) {
-        *gameStage = 1;
-        *framesCounter = 0;
-    }
-
-    if(IsKeyDown(KEY_ENTER)) {
         *gameStage = 1;
         *framesCounter = 0;
     }

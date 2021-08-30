@@ -196,8 +196,6 @@ Rectangle *map(){
     return vet;
 }
 
-
-
 void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballPositionx,float *ballPositiony,int *soltaInimigo1,int *soltaInimigo2,int * book3,int *power){
     Rectangle *mapa = NULL;
     mapa = map();
@@ -216,9 +214,6 @@ void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballP
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[0])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[1])){
-    //    deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
-    // }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[2])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356);
     }
@@ -231,9 +226,6 @@ void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballP
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[9])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[10])){
-    //     deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
-    // }
     if(CheckCollisionCircleRec(ballPosition, RAIO,mapa[11])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
@@ -246,12 +238,6 @@ void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballP
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[14])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[15])){
-    //     deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
-    // }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[16])){
-    //     deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
-    // }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[17])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
@@ -290,18 +276,9 @@ void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballP
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[30])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[31])){
-    //     deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
-    // }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[32])){
-    //     deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
-    // }
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[33])){
         deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
     }
-    // if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[34])){
-    //     deathHero(books,ballPositionx,ballPositiony,soltaInimigo1,soltaInimigo2,book3,power,33,356); 
-    // } 
 
     //diagonais
     if(CheckCollisionCircleRec(ballPosition, 8, mapa[36])){
@@ -449,7 +426,7 @@ void collisionHero(int *gameStage, int *books, Vector2 ballPosition,float *ballP
     if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[81]) && (*soltaInimigo1) == 1 && (*soltaInimigo2) == 1 
     && (*book3) == 1){
         // CloseWindow(); 
-        *gameStage = 4;
+        *gameStage = 3;
     } 
     else if(CheckCollisionCircleRec(ballPosition, RAIO, mapa[81])){
         (*ballPositionx) = 770;

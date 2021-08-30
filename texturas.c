@@ -48,7 +48,6 @@ void drawFireBall(Texture2D fireballUp, Texture2D fireballDown, Vector2 fire, fl
 void drawDiagWall(Texture2D diagWall){
     Texture2D diagWall2 = LoadTexture("assets/24wall3.png");
     Texture2D diagWall3 = LoadTexture("assets/wall2.png");
-    Texture2D diagWall4 = LoadTexture("assets/wall2.png");
 
     Texture2D diagWall5 = LoadTexture("assets/wall45.png");
 
@@ -73,7 +72,7 @@ void drawDiagWall(Texture2D diagWall){
     );
     DrawTextureRec(//24wall3
         diagWall2,
-        (Rectangle){0.0f, 0.0f, (float)diagWall2.width, (float)diagWall2.height}, //2.9 3.5
+        (Rectangle){0.0f, 0.0f, (float)diagWall2.width, (float)diagWall2.height},
         (Vector2){676, 226},
         WHITE
     );
@@ -100,8 +99,8 @@ void drawDiagWall(Texture2D diagWall){
     );
 
     DrawTextureRec(
-        diagWall4,
-        (Rectangle){0.0f, 0.0f, (float)-diagWall4.width/1.4, (float)-diagWall4.height},
+        diagWall3,
+        (Rectangle){0.0f, 0.0f, (float)-diagWall3.width/1.4, (float)-diagWall3.height},
         (Vector2){83, 244}, //73 233 //87, 244
         WHITE
     );

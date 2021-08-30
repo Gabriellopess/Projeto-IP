@@ -1,5 +1,74 @@
-#include "hero.h"
 #include "raylib.h"
+#include "hero.h"
+
+void heroLogic(float section, Texture2D hero, int *heroFramesCounter, int heroFramesSpeed, int *heroCurrentFrame,
+    Rectangle *heroFrameRec){
+        if(section != 48){
+            if (IsKeyDown(KEY_UP)){
+                (*heroFrameRec).y = section*3;
+                (*heroFramesCounter)++;
+                if(*heroFramesCounter >= (15/heroFramesSpeed)){
+                    *heroFramesCounter = 0;
+                    (*heroCurrentFrame)++;
+                    if(*heroCurrentFrame > 2){
+                        *heroCurrentFrame = 0;
+                    }
+                    
+                    (*heroFrameRec).x = (float)*heroCurrentFrame * (float)hero.width/12;
+                }
+            }
+        }
+        if (IsKeyDown(KEY_RIGHT)){
+            (*heroFrameRec).y = section*2;
+            (*heroFramesCounter)++;
+            if(*heroFramesCounter >= (15/heroFramesSpeed)){
+                *heroFramesCounter = 0;
+                (*heroCurrentFrame)++;
+                if(*heroCurrentFrame > 2){
+                    *heroCurrentFrame = 0;
+                }
+                
+                (*heroFrameRec).x = (float)*heroCurrentFrame * (float)hero.width/12;
+            }
+        } 
+        if (IsKeyDown(KEY_LEFT)){
+            (*heroFrameRec).y = section;
+            (*heroFramesCounter)++;
+            if(*heroFramesCounter >= (15/heroFramesSpeed)){
+                *heroFramesCounter = 0;
+                (*heroCurrentFrame)++;
+                if(*heroCurrentFrame > 2){
+                    *heroCurrentFrame = 0;
+                }
+                
+                (*heroFrameRec).x = (float)*heroCurrentFrame * (float)hero.width/12;
+            }
+        }
+        
+        if (IsKeyDown(KEY_DOWN)){
+            (*heroFrameRec).y = section*0;
+            (*heroFramesCounter)++;
+            if(*heroFramesCounter >= (15/heroFramesSpeed)){
+                *heroFramesCounter = 0;
+                (*heroCurrentFrame)++;
+                if(*heroCurrentFrame > 2){
+                    *heroCurrentFrame = 0;
+                }
+
+                (*heroFrameRec).x = (float)*heroCurrentFrame * (float)hero.width/12;
+            }
+        }
+}
+
+void drawHero(float x, float y,Texture2D hero, Rectangle *heroFrameRec, Vector2 heroPosition){
+    DrawTextureRec(
+        hero,
+        *heroFrameRec,
+        (Vector2){heroPosition.x - x, heroPosition.y - y },
+        WHITE
+    );
+}
+
 
 void controlHero(float * ballPositionx,float * ballPositiony){
     if (IsKeyDown(KEY_RIGHT)) (*ballPositionx) += 3.0f;

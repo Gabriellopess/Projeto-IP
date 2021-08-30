@@ -6,6 +6,7 @@
         "introducao.h": "c",
         "texturas.h": "c",
         "system_error": "c",
-        "stdlib.h": "c"
+        "stdlib.h": "c",
+        "plataforma.h": "c"
     }
 }

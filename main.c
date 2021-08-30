@@ -20,7 +20,6 @@
 #define LABIRINTO 2
 #define TEXTO2 3
 #define PLATAFORMA 4
-#define FINAL 5
 #define CONTROLES 6
 
 typedef struct Player {
@@ -35,20 +34,12 @@ typedef struct EnvItem {
     Color color;
 } EnvItem;
 
-/*
-Define para nome das fases;
-struct para os estados;
-função para chamar nos gameStages;
-reutilização de codigo criando função;
-*/
-
-
 //mingw32-make PLATFORM=PLATFORM_DESKTOP
 
 int main() {
     const int screenWidth = 800;
     const int screenHeight = 400;
-    const char *title = "Joguinho";
+    const char *title = "Discrete Disciples";
     InitWindow(screenWidth, screenHeight, "raylib");
     SetWindowTitle(title);
     SetTargetFPS(60);
@@ -60,13 +51,37 @@ int main() {
     float temporary2 = 0;
 
     int power = 0;
-    int soltaInimigo1 =0;
-    int soltaInimigo2 =0;
-    int book3 =0;
+    int soltaInimigo1 = 0;
+    int soltaInimigo2 = 0;
+    int book3 = 0;
     int books = 0;
     Vector2 ballPosition = { (float)33, (float)356 };
     Vector2 enemyPosition2;
     Vector2 enemyPosition;
+
+    //personagem
+    Texture2D hero = LoadTexture("assets/personagem250.png");
+    Texture2D heroPlat = LoadTexture("assets/personagem.png");
+    int heroCurrentFrame = 0;
+    int heroFramesCounter = 0;
+    int heroFramesSpeed = 1;
+    Rectangle heroFrameRec = {0.0f, 0.0f, (float)hero.width/12, (float)hero.height/8};
+    Rectangle heroFrameRecPlat = {0.0f, 0.0f, (float)heroPlat.width/12, (float)heroPlat.height/8};
+
+    //Music
+    InitAudioDevice();
+    Music music = LoadMusicStream("assets/music3.mp3");
+    Music musiclab = LoadMusicStream("assets/music1.mp3");
+    Music musictema = LoadMusicStream("assets/music2.mp3");
+    Music musicWin = LoadMusicStream("assets/music4.mp3");
+    Music musicLose = LoadMusicStream("assets/music5.mp3");
+
+    float volume = 0.1f;
+    PlayMusicStream(music);
+    PlayMusicStream(musiclab);
+    PlayMusicStream(musictema);
+    PlayMusicStream(musicWin);
+    PlayMusicStream(musicLose);
 
     //plataforma
     int gatilho = 0;
@@ -76,12 +91,6 @@ int main() {
     int lifes = 5;
     int finish = 0;
  
-    //music antes while
-    InitAudioDevice();
-    Music music = LoadMusicStream("assets/music3.mp3");
-    float volume = 0.1f;
-    PlayMusicStream(music);
- 
     Texture2D porta = LoadTexture("assets/portinha.png");
     Texture2D piso = LoadTexture("assets/pisinho.png");
     Texture2D fundo = LoadTexture("assets/fundin.png");
@@ -89,8 +98,10 @@ int main() {
     Texture2D fireballUp = LoadTexture("assets/fireballUp45x94.png");
     Texture2D fireballDown = LoadTexture("assets/fireballDown45x94.png");
     Texture2D heart = LoadTexture("assets/heart28x28.png");
- 
- 
+    Texture2D youLose = LoadTexture("assets/youLose.png");
+    Texture2D youWin = LoadTexture("assets/youWin.png");
+    Texture2D anjolinda = LoadTexture("assets/AnjolindaMini.png");
+
     Vector2 enemyPosition2plat = { (float)33, (float)356 };
     Vector2 enemyPositionplat = { (float)600, (float)20 };
     Vector2 fireBall1 = { (float)(180), (float)420 };
@@ -121,7 +132,6 @@ int main() {
 
     //mapa
     Rectangle *mapa = NULL;
-    // Vector2 bullshit = {(float)0, (float)0};
     Texture2D mapGrass = LoadTexture("assets/GrassSprite.png");
     Texture2D stoneHorizWall = LoadTexture("assets/StoneWallSprite80x22.png");
     Texture2D stoneVertWall = LoadTexture("assets/NewStoneVerticalSprite33x22.png");
@@ -145,12 +155,12 @@ int main() {
     int castleFramesCounter = 0;
     int castleFramesSpeed = 1;
     float castleX = -55;
-    float castleY = -30; //49.52
+    float castleY = -30;
     Vector2 castlePosition = {castleX, castleY};
     Texture2D castle = LoadTexture("assets/castleSpriteRed.png");
     Rectangle castleFrameRec = {0.0f, 0.0f, (float)castle.width/2, (float)castle.height};
     
-    //buttons introducao
+    //buttons
     Texture2D playButton = LoadTexture("assets/playButton150x50.png");
     Texture2D whitePlayButton = LoadTexture("assets/whitePlayButton.png");
     Texture2D controlsButton = LoadTexture("assets/controlsButton150x50.png");
@@ -166,10 +176,15 @@ int main() {
     Texture2D background = LoadTexture("assets/grassFundo.png");
 
     //texto introducao
-    char message[100] = "Anjolinda\n    Rescue";
+    char message[100] = "Discrete\n   Disciples";
     int framesCounter = 0;
-    //texto explicação
+    //texto1 explicação
     char secondMessage[1000] = "Bem vindo ao Reino do CIn, discípulo!\nSua primeira missão como aprendiz de Matemática Discreta\nserá recuperar os 3 livros dos autores favoritos da\nPrincesa Anjolinda: Rosen, Lovász e Knuth, que estão\nperdidos no labirinto do castelo, protegidos por\nfantasmas e paredes amaldiçoadas.\nBoa sorte! Que Fermat o proteja.";
+
+    //texto1 explicação
+    char thirdMessage[1000] = "Parabéns, discípulo!\nVocê conseguiu passar pelo labirinto! Mas, até encontrar\nAnjolinda e lhe entregar os livros, você ainda tem uma\nmissão: passar pelo chão de lava do castelo, permanecendo\nvivo por 30s! Porém, cuidado com as bolas de fogo expelidas\npelo chão e com os fantasmas que ainda estão atrás de você!\nBoa sorte, você tem apenas 5 vidas nessa etapa!\nCuidado...";
+
+
 
     void UpdatePlayer(Player *player, EnvItem *envItems, int envItemsLength, float delta){
         if (IsKeyDown(KEY_LEFT)) player->position.x -= VELOC_HORIZ_JOG*delta;
@@ -201,7 +216,6 @@ int main() {
         {
             player->position.y += player->velocidade*delta;
             player->velocidade += G*delta;
-            //player->podPular = false;
         }
         else player->podPular = true;
     }
@@ -226,8 +240,54 @@ int main() {
     }
 
     // Main game loop
-    while (!WindowShouldClose())    // Detect window close button or ESC key
+    while (!WindowShouldClose())
     {
+        //Musica
+        if(gameStage == INTRODUCAO || gameStage == CONTROLES || gameStage == TEXTO1 ){
+            UpdateMusicStream(musictema);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musictema, volume);
+        }
+
+        if(gameStage == LABIRINTO || gameStage == TEXTO2 ){
+            UpdateMusicStream(musiclab);//music
+            //volume
+            if (IsKeyDown(KEY_M) && !IsKeyDown(KEY_A)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musiclab, volume);
+        }
+
+        if(gameStage == PLATAFORMA && finish == 0){
+            UpdateMusicStream(music);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(music, volume);
+        }
+
+        if(gameStage == PLATAFORMA && finish == 1 && lifes > 0){
+            volume = 0.25f;
+            SetMusicVolume(musicWin, volume);
+            UpdateMusicStream(musicWin);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musicWin, volume);
+        }
+
+        if(gameStage == PLATAFORMA && finish == 1 && lifes <= 0){
+            volume = 0.2f;
+            SetMusicVolume(musicWin, volume);
+            UpdateMusicStream(musicLose);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musicLose, volume);
+        }
+
+        
         if(gameStage == INTRODUCAO){
             //Introducao
             introducaoLogic(castle, &castleFramesCounter, castleFramesSpeed, &castleCurrentFrame, &castleFrameRec, &framesCounter, &gameStage);
@@ -239,6 +299,7 @@ int main() {
             textLogic(&framesCounter, &gameStage);
         }
         if(gameStage == LABIRINTO){
+            heroLogic(31.25, hero, &heroFramesCounter, heroFramesSpeed, &heroCurrentFrame,&heroFrameRec);
             controlHero(&ballPosition.x,&ballPosition.y);
             controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
             ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
@@ -249,6 +310,7 @@ int main() {
             }
 
             if (!hacker()){
+                heroLogic(31.25, hero, &heroFramesCounter, heroFramesSpeed, &heroCurrentFrame,&heroFrameRec);
                 //colisoes com o terreno (hero)
                 collisionHero(&gameStage, &books,ballPosition,&ballPosition.x,&ballPosition.y,&soltaInimigo1,&soltaInimigo2,&book3,&power);               
                 //colisoes com o terreno (enemy)
@@ -263,16 +325,15 @@ int main() {
                 }
             }
         }
-
+        if(gameStage == TEXTO2){
+            textLogic(&framesCounter, &gameStage);
+        }
         if(gameStage == PLATAFORMA){
+            heroLogic(48, heroPlat, &heroFramesCounter, heroFramesSpeed, &heroCurrentFrame,&heroFrameRecPlat);
             float deltaTime = GetFrameTime();
             framesCounterTime++;
             UpdatePlayer(&player, envItems, envItemsLength, deltaTime);
-            UpdateMusicStream(music);//music
-            //volume
-            if (IsKeyDown(KEY_M)) volume -= 0.01f;
-            else if (IsKeyDown(KEY_N)) volume += 0.01f;
-            SetMusicVolume(music, volume);
+        
             //fantasmas
             if(player.position.x > enemyPositionplat.x) enemyPositionplat.x += 0.70f;
             if(player.position.x < enemyPositionplat.x) enemyPositionplat.x -= 0.70f;
@@ -310,6 +371,9 @@ int main() {
             else{
                 fireBall3.y += 3.0f;
                 if(fireBall3.y >= 460) gatilho3=0;
+            }
+            if(finish == 1){
+                finalButtonsLogic(&gameStage);
             }
         }
         
@@ -415,13 +479,13 @@ int main() {
 
                 //Personagem
                 if (powerPoison(power)){
-                    DrawCircleV(ballPosition, RAIO, RED);
+                    drawHero(10, 20, hero, &heroFrameRec, ballPosition);
                 }
                 else if(hacker()){
-                    DrawCircleV(ballPosition, RAIO, YELLOW);
+                    drawHero(10, 20, hero, &heroFrameRec, ballPosition);
                 }
                 else{
-                    DrawCircleV(ballPosition, RAIO, BLACK);
+                    drawHero(10, 20, hero, &heroFrameRec, ballPosition);
                 }
 
                 //safe zone
@@ -446,9 +510,11 @@ int main() {
                 drawContadores(books);
             }
 
+            if(gameStage == TEXTO2){
+                drawText(background, castle, castlePosition, castleFrameRec, thirdMessage, framesCounter);
+            }
+
             if(gameStage == PLATAFORMA){
-                float time = GetFrameTime();
-            
                 if(!(finish == 1)){
                     //background completo
                     float a = 0, b = 0; 
@@ -482,54 +548,33 @@ int main() {
                         c+=80;
                     }
 
-
                     DrawTextureRec(piso, (Rectangle){0.0f, 0.0f, (float)piso.width, (float)piso.height}, (Vector2){(float)0, (float)80}, WHITE);//5
                     DrawTextureRec(piso, (Rectangle){0.0f, 0.0f, (float)piso.width, (float)piso.height}, (Vector2){(float)80, (float)80}, WHITE);//5
 
                     DrawTextureRec(piso, (Rectangle){0.0f, 0.0f, (float)piso.width, (float)piso.height}, (Vector2){(float)683, (float)61}, WHITE);//9
                     DrawTextureRec(piso, (Rectangle){0.0f, 0.0f, (float)piso.width, (float)piso.height}, (Vector2){(float)763, (float)61}, WHITE);//9
 
-
-
-
-                    Rectangle playerRect = { player.position.x - 20, player.position.y - 40, 40, 40 };
+                    Rectangle playerRect = { player.position.x - 20, player.position.y - 40, 20, 40 };
                     DrawCircleV(enemyPositionplat, 7, DARKBLUE);
                     DrawCircleV(enemyPosition2plat, 7, DARKBLUE);
 
                     //limitando as laterais
-                    if(player.position.x < 0) player.position.x = 0;
-                    if(player.position.x > screenWidth) player.position.x = screenWidth;
+                    if(player.position.x < 10) player.position.x = 10;
+                    if(player.position.x > screenWidth-3) player.position.x = screenWidth-3;
 
-                    // DrawCircleV(fireBall1, 15, RED);
-                    // DrawTextureRec(
-                    //     fireballUp,
-                    //     (Rectangle){0.0f, 0.0f, fireballUp.width, fireballUp.height}, 
-                    //     (Vector2){fireBall1.x - 22, fireBall1.y - 32},
-                    //     WHITE);
+                    //bolas de fogo
                     drawFireBall(fireballUp, fireballDown, fireBall1, &aux1);
-                     
-
-                    // DrawCircleV(fireBall2, 15, RED);
-                    // DrawTextureRec(
-                    //     fireballUp,
-                    //     (Rectangle){0.0f, 0.0f, fireballUp.width, fireballUp.height}, 
-                    //     (Vector2){fireBall2.x - 22, fireBall2.y - 32},
-                    //     WHITE);
                     drawFireBall(fireballUp, fireballDown, fireBall2, &aux1);
-                    
-
-                    // DrawCircleV(fireBall3, 15, RED);
-                    // DrawTextureRec(
-                    //     fireballUp,
-                    //     (Rectangle){0.0f, 0.0f, fireballUp.width, fireballUp.height}, 
-                    //     (Vector2){fireBall3.x - 22, fireBall3.y - 32},
-                    //     WHITE);
                     drawFireBall(fireballUp, fireballDown, fireBall3, &aux1);
                     aux1 = fireBall3.y;
 
+                    //Anjolinda
+                    drawAnjolinda(anjolinda);
 
-                    DrawRectangleRec(playerRect, RED);
+                    //Personagem
+                    drawHero(5, 4, heroPlat, &heroFrameRecPlat, (Vector2){player.position.x - 20, player.position.y - 40});
 
+                    //fantasmas
                     drawFantasma(fantasmaRight, fantasmaLeft, enemyPositionplat, &temporaryplat);
                     temporaryplat = enemyPositionplat.x;
 
@@ -556,26 +601,17 @@ int main() {
                         deathHero2(&framesCounterTime,&player.position.x,&player.position.y,&enemyPositionplat.x,&enemyPositionplat.y,&enemyPosition2plat.x,&enemyPosition2plat.y,&lifes);
                     }
 
-                    // DrawText(TextFormat("Lifes: %d",lifes), 700, 110, 23, BLACK);
-                    // DrawTextureRec(
-                    //     heart,
-                    //     (Rectangle){0.0f, 0.0f, heart.width, heart.height}, 
-                    //     (Vector2){700, 170},
-                    //     WHITE);
                     drawHearts(heart, &lifes);
-                    // DrawText(TextFormat("Tempo: %d", 30 - (framesCounterTime/60)), 350, 20, 25, BLACK);
                     drawTimer(&framesCounterTime);
 
                     if(lifes <= 0) finish = 1;
                     else if((framesCounterTime/60) == 30) finish = 1;
                 }
                 else if(lifes > 0){    
-                    ClearBackground(SKYBLUE);
-                    DrawText(TextFormat("YOU WIN"), 400, 200, 32, BLACK); 
+                    drawYouLose(youWin, 1, exitButton, whiteExitButton);
                 }
                 else{
-                    ClearBackground(SKYBLUE);
-                    DrawText(TextFormat("YOU LOSE"), 400, 200, 32, BLACK);
+                    drawYouLose(youLose, 0, exitButton, whiteExitButton);
                 }
             }
         EndDrawing();
@@ -583,6 +619,10 @@ int main() {
     
 
     UnloadMusicStream(music);//close music
+    UnloadMusicStream(musiclab);//close music
+    UnloadMusicStream(musictema);//close music
+    UnloadMusicStream(musicWin);//close music
+    UnloadMusicStream(musicLose);//close music
     CloseAudioDevice();//para audio
     CloseWindow();  // Close window and OpenGL context
     free(mapa);
