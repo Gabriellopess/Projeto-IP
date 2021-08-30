@@ -81,10 +81,16 @@ int main() {
     Music music = LoadMusicStream("assets/music3.mp3");
     Music musiclab = LoadMusicStream("assets/music1.mp3");
     Music musictema = LoadMusicStream("assets/music2.mp3");
+    Music musicWin = LoadMusicStream("assets/music4.mp3");
+    Music musicLose = LoadMusicStream("assets/music5.mp3");
+
     float volume = 0.1f;
     PlayMusicStream(music);
     PlayMusicStream(musiclab);
     PlayMusicStream(musictema);
+    PlayMusicStream(musicWin);
+    PlayMusicStream(musicLose);
+
  
     Texture2D porta = LoadTexture("assets/portinha.png");
     Texture2D piso = LoadTexture("assets/pisinho.png");
@@ -232,13 +238,47 @@ int main() {
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        if(gameStage != LABIRINTO && gameStage != PLATAFORMA){
+        //dentro do while
+        if(gameStage == INTRODUCAO || gameStage == CONTROLES || gameStage == TEXTO1 ){
             UpdateMusicStream(musictema);//music
             //volume
             if (IsKeyDown(KEY_M)) volume -= 0.01f;
             else if (IsKeyDown(KEY_N)) volume += 0.01f;
             SetMusicVolume(musictema, volume);
         }
+
+        if(gameStage == LABIRINTO || gameStage == TEXTO2 ){
+            UpdateMusicStream(musiclab);//music
+            //volume
+            if (IsKeyDown(KEY_M) && !IsKeyDown(KEY_A)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musiclab, volume);
+        }
+
+        if(gameStage == PLATAFORMA && finish == 0){
+            UpdateMusicStream(music);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(music, volume);
+        }
+
+        if(gameStage == PLATAFORMA && finish == 1 && lifes > 0){
+            UpdateMusicStream(musicWin);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musicWin, volume);
+        }
+
+        if(gameStage == PLATAFORMA && finish == 1 && lifes <= 0){
+            UpdateMusicStream(musicLose);//music
+            //volume
+            if (IsKeyDown(KEY_M)) volume -= 0.01f;
+            else if (IsKeyDown(KEY_N)) volume += 0.01f;
+            SetMusicVolume(musicLose, volume);
+        }
+
         if(gameStage == INTRODUCAO){
             //Introducao
             introducaoLogic(castle, &castleFramesCounter, castleFramesSpeed, &castleCurrentFrame, &castleFrameRec, &framesCounter, &gameStage);
@@ -253,12 +293,6 @@ int main() {
             controlHero(&ballPosition.x,&ballPosition.y);
             controlEnemys(soltaInimigo1,soltaInimigo2,ballPosition.x,ballPosition.y
             ,&enemyPosition.x,&enemyPosition.y,&enemyPosition2.x,&enemyPosition2.y);
-
-            UpdateMusicStream(musiclab);//music
-            //volume
-            if (IsKeyDown(KEY_M) && !IsKeyDown(KEY_A)) volume -= 0.01f;
-            else if (IsKeyDown(KEY_N)) volume += 0.01f;
-            SetMusicVolume(musiclab, volume);
 
             //entrada
             if(ballPosition.x <= 0){
@@ -285,11 +319,6 @@ int main() {
             float deltaTime = GetFrameTime();
             framesCounterTime++;
             UpdatePlayer(&player, envItems, envItemsLength, deltaTime);
-            UpdateMusicStream(music);//music
-            //volume
-            if (IsKeyDown(KEY_M)) volume -= 0.01f;
-            else if (IsKeyDown(KEY_N)) volume += 0.01f;
-            SetMusicVolume(music, volume);
             //fantasmas
             if(player.position.x > enemyPositionplat.x) enemyPositionplat.x += 0.70f;
             if(player.position.x < enemyPositionplat.x) enemyPositionplat.x -= 0.70f;
@@ -329,6 +358,7 @@ int main() {
                 if(fireBall3.y >= 460) gatilho3=0;
             }
         }
+
         
         BeginDrawing();
             ClearBackground(RAYWHITE);
@@ -602,6 +632,8 @@ int main() {
     UnloadMusicStream(music);//close music
     UnloadMusicStream(musiclab);//close music
     UnloadMusicStream(musictema);//close music
+    UnloadMusicStream(musicWin);//close music
+    UnloadMusicStream(musicLose);//close music
     CloseAudioDevice();//para audio
     CloseWindow();  // Close window and OpenGL context
     free(mapa);
