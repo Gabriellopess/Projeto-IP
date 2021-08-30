@@ -27,7 +27,7 @@
 PROJECT_NAME       ?= game
 RAYLIB_VERSION     ?= 3.8.0
 ## @TODO: Mude aqui para o caminho de onde está o raylib
-RAYLIB_PATH        ?= ../raylib
+RAYLIB_PATH        ?= C:\Users\loren\ProjetoIP\raylib
 
 # Define compiler path on Windows
 COMPILER_PATH      ?= C:/raylib/mingw/bin
