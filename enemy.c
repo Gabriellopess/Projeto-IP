@@ -6,7 +6,7 @@ void resetEnemy(float *enemyPositionx,float *enemyPositiony,float x,float y){
 }
 
 void controlEnemys(int soltaInimigo1,int soltaInimigo2,float ballPositionx,float ballPositiony
-,float *enemyPositionx,float *enemyPositiony,float *enemyPosition2x,float *enemyPosition2y ){
+                    ,float *enemyPositionx,float *enemyPositiony,float *enemyPosition2x,float *enemyPosition2y ){
     if(soltaInimigo1 == 0){
             resetEnemy(enemyPositionx,enemyPositiony,450,80);
         }

@@ -1,8 +1,8 @@
 #include "raylib.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
-#include "pthread.h"
+// #include <time.h>
+// #include "pthread.h"
 #include "enemy.h"
 #include "hero.h"
 #include "map.h"
@@ -185,7 +185,6 @@ int main() {
     char thirdMessage[1000] = "Parabéns, discípulo!\nVocê conseguiu passar pelo labirinto! Mas, até encontrar\nAnjolinda e lhe entregar os livros, você ainda tem uma\nmissão: passar pelo chão de lava do castelo, permanecendo\nvivo por 30s! Porém, cuidado com as bolas de fogo expelidas\npelo chão e com os fantasmas que ainda estão atrás de você!\nBoa sorte, você tem apenas 5 vidas nessa etapa!\nCuidado...";
 
 
-
     void UpdatePlayer(Player *player, EnvItem *envItems, int envItemsLength, float delta){
         if (IsKeyDown(KEY_LEFT)) player->position.x -= VELOC_HORIZ_JOG*delta;
         if (IsKeyDown(KEY_RIGHT)) player->position.x += VELOC_HORIZ_JOG*delta;
@@ -200,11 +199,7 @@ int main() {
         {
             EnvItem *ei = envItems + i;
             Vector2 *p = &(player->position);
-            if (ei->blocking &&
-                ei->rect.x <= p->x &&
-                ei->rect.x + ei->rect.width >= p->x &&
-                ei->rect.y >= p->y &&
-                ei->rect.y < p->y + player->velocidade*delta)
+            if (ei->blocking && ei->rect.x <= p->x && ei->rect.x + ei->rect.width >= p->x && ei->rect.y >= p->y && ei->rect.y < p->y + player->velocidade*delta)
             {
                 hitObstacle = 1;
                 player->velocidade = 0.0f;
@@ -279,7 +274,7 @@ int main() {
 
         if(gameStage == PLATAFORMA && finish == 1 && lifes <= 0){
             volume = 0.2f;
-            SetMusicVolume(musicWin, volume);
+            SetMusicVolume(musicLose, volume);
             UpdateMusicStream(musicLose);//music
             //volume
             if (IsKeyDown(KEY_M)) volume -= 0.01f;
@@ -344,8 +339,8 @@ int main() {
             if(player.position.x < enemyPosition2plat.x) enemyPosition2plat.x -= 0.85f;
             if(player.position.y > enemyPosition2plat.y) enemyPosition2plat.y += 0.85f;
             if(player.position.y < enemyPosition2plat.y) enemyPosition2plat.y -= 0.85f;
+
             //bolas de fogo
-    
             if(fireBall1.y >= (-60) && gatilho == 0){
                 fireBall1.y -= 3.0f;
                 if(fireBall1.y <= (-60)) gatilho=1;
@@ -507,6 +502,7 @@ int main() {
                     (Vector2){(float)300, (float)19},
                     WHITE
                 );
+
                 drawContadores(books);
             }
 
@@ -606,12 +602,12 @@ int main() {
 
                     if(lifes <= 0) finish = 1;
                     else if((framesCounterTime/60) == 30) finish = 1;
-                }
+                } 
                 else if(lifes > 0){    
-                    drawYouLose(youWin, 1, exitButton, whiteExitButton);
+                    drawFinal(youWin, 1, exitButton, whiteExitButton);
                 }
                 else{
-                    drawYouLose(youLose, 0, exitButton, whiteExitButton);
+                    drawFinal(youLose, 0, exitButton, whiteExitButton);
                 }
             }
         EndDrawing();

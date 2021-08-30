@@ -48,7 +48,6 @@ void drawFireBall(Texture2D fireballUp, Texture2D fireballDown, Vector2 fire, fl
 void drawDiagWall(Texture2D diagWall){
     Texture2D diagWall2 = LoadTexture("assets/24wall3.png");
     Texture2D diagWall3 = LoadTexture("assets/wall2.png");
-
     Texture2D diagWall5 = LoadTexture("assets/wall45.png");
 
     DrawTextureRec( //wall1
@@ -139,63 +138,63 @@ void drawVertWall(Texture2D stoneVertWall){
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 22}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 22}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 55}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 55}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 88}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 88}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 121}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 121}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 154}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 154}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 187}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 187}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 220}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 220}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 253}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 253}, 
         WHITE
     );
 
     DrawTextureRec(
         stoneVertWall,
         (Rectangle){0.0f, 0.0f, (float)stoneVertWall.width, (float)stoneVertWall.height},
-        (Vector2){-13, 286}, // vertical grandona do lado esquerdo da tela
+        (Vector2){-13, 286}, 
         WHITE
     );
 
@@ -784,7 +783,7 @@ void drawHorizontalWall(Texture2D stoneHorizWall){
     DrawTextureRec(
         stoneHorizWall,
         (Rectangle){0.0f, 0.0f, (float)stoneHorizWall.width/1.2, (float)stoneHorizWall.height},
-        (Vector2){484, 213}, //IMAGEM MT GRANDE PARA O RETANGULO 484
+        (Vector2){484, 213}, 
         WHITE
     );
 
