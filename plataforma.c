@@ -8,7 +8,7 @@ void finalButtonsLogic(int *gameStage){
     }
 }
 
-void drawYouLose(Texture2D textura, int win, Texture2D exitButton, Texture2D whiteExitButton){
+void drawFinal(Texture2D textura, int win, Texture2D exitButton, Texture2D whiteExitButton){
     Vector2 mousePosition = GetMousePosition();
     if(win == 0){
         DrawTextureRec(
